@@ -287,30 +287,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- REFERANSLAR --- */}
-      <motion.section 
-        id="referanslar" 
-        className="bg-blue-900 py-20 px-4 text-white"
-        initial="hidden"
-        whileInView="visible"
-        variants={containerVariants}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto text-center">
-          <motion.h2 variants={sectionVariants} className="text-3xl md:text-4xl font-black mb-16 uppercase tracking-widest text-white text-center">REFERANSLARIMIZ</motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-left">
-            {referanslar.map((ref) => (
-              <motion.div key={ref.id} variants={cardVariants} whileHover={{ scale: 1.05 }} className="relative group overflow-hidden rounded-2xl shadow-2xl h-64 md:h-80 border border-white/10">
-                <Image src={ref.resim_url} alt={ref.baslik} fill className="object-cover transition duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent flex flex-col justify-end p-6 text-left">
-                  <h3 className="text-lg font-bold text-white mb-1">{ref.baslik}</h3>
-                  <p className="text-[10px] text-cyan-400 font-bold uppercase tracking-widest">{ref.aciklama}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+      {/* --- REFERANSLAR (KAYAN YAZI - SİYAH VARYASYON) --- */}
+<section id="referanslar" className="py-24 bg-white overflow-hidden border-t border-b border-gray-100">
+  <div className="container mx-auto px-4 mb-16 text-center">
+    <motion.span 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="text-cyan-500 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
+    >
+      Güvenle Yönetiyoruz
+    </motion.span>
+    <h2 className="text-4xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter">
+      REFERANSLARIMIZ
+    </h2>
+  </div>
+
+  <div className="relative flex items-center bg-gray-50 py-10">
+    {/* Yanlardaki gölge efekti akışı daha derin gösterir */}
+    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+    <motion.div
+      className="flex whitespace-nowrap gap-16"
+      animate={{
+        x: ["0%", "-50%"]
+      }}
+      transition={{
+        duration: 30, // Hız ayarı
+        ease: "linear",
+        repeat: Infinity,
+      }}
+    >
+      {[
+        "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
+      ].concat([
+         "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
+      ]).map((bina, index) => (
+        <span 
+          key={index} 
+          className="text-4xl md:text-6xl font-black text-blue-900 hover:text-cyan-500 transition-colors duration-300 cursor-default select-none flex items-center gap-16"
+        >
+          {bina}
+          <span className="text-cyan-400 text-4xl">•</span>
+        </span>
+      ))}
+    </motion.div>
+  </div>
+</section>
 
       {/* --- YÖNETİM SÜRECİ --- */}
       <section className="py-24 bg-blue-900 text-white relative overflow-hidden text-left">
