@@ -1,40 +1,41 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/utils/supabase';
+import nodemailer from 'nodemailer';
 
-export async function GET(request: Request) {
-  // 1. Güvenlik Kontrolü (Sadece Vercel'in kendi sistemi bu kodu tetikleyebilsin diye)
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV !== 'development') {
-    return new Response('Yetkisiz Erişim', { status: 401 });
-  }
-
+export async function POST(request: Request) {
   try {
-    // 2. Haber Konuları Havuzu
-    const konular = [
-      { baslik: "Kayseri'de Bina Yönetiminde Yeni Dönem", etiket: "Duyuru" },
-      { baslik: "Aidat Ödemelerinde Şeffaflık Neden Önemli?", etiket: "Bilgilendirme" },
-      { baslik: "Apartmanlarda Bahar Bakımı Hazırlıkları", etiket: "Hizmet" },
-      { baslik: "Kat Mülkiyeti Kanunu Hakkında Merak Edilenler", etiket: "Hukuk" },
-      { baslik: "Dijital Yönetim Paneli ile 7/24 Şeffaflık", etiket: "Teknoloji" }
-    ];
+    const body = await request.json();
+    const { ad_soyad, email, telefon, konu, mesaj } = body;
 
-    const secilenHaber = konular[Math.floor(Math.random() * konular.length)];
+    // 1. SMTP Taşıyıcı Yapılandırması (Gmail için)
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // Vercel'e eklediğin e-posta
+        pass: process.env.EMAIL_PASS, // Google Uygulama Şifresi
+      },
+    });
 
-    // 3. Haberi Supabase'e Yaz
-    const { error } = await supabase.from('duyurular').insert([
-      {
-        baslik: secilenHaber.baslik,
-        icerik: `${secilenHaber.baslik} konusunda Üçüzler Bina Yönetimi olarak Kayseri'de en şeffaf hizmeti sunmaya devam ediyoruz. Sakinlerimizin huzuru için teknolojiyi yönetimle birleştiriyoruz.`,
-        etiket: secilenHaber.etiket,
-        tarih: new Date().toISOString()
-      }
-    ]);
+    // 2. E-posta İçeriği
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // Mesaj kime gitsin? (Kendine gönderiyorsun)
+      subject: `Yeni İletişim Formu: ${konu}`,
+      html: `
+        <h3>Yeni Mesaj Detayları</h3>
+        <p><strong>Ad Soyad:</strong> ${ad_soyad}</p>
+        <p><strong>E-posta:</strong> ${email}</p>
+        <p><strong>Telefon:</strong> ${telefon}</p>
+        <p><strong>Konu:</strong> ${konu}</p>
+        <p><strong>Mesaj:</strong> ${mesaj}</p>
+      `,
+    };
 
-    if (error) throw error;
+    // 3. Gönderim İşlemi
+    await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ success: true, message: "AI Haber Üretildi ve Yayına Alındı." });
-
+    return NextResponse.json({ success: true });
   } catch (error: any) {
+    console.error('E-posta Gönderim Hatası:', error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
