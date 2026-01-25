@@ -425,7 +425,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-4">
                   <FaWhatsapp className="text-green-600 mt-1 shrink-0 text-xl" />
-                  <p className="text-gray-600 font-bold">+90 (545) 559 62 12</p>
+                  <p className="text-gray-600 font-bold">+90 (545) 559 62 12 - +90 (553) 887 36 16</p>
                 </div>
               </div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -516,7 +516,7 @@ export default function Home() {
               </div>
               <div className="flex gap-4 pt-4">
                 <a href="https://www.instagram.com/ucuzlerbina_yonetimi/" target="_blank" className="bg-white/5 p-3 rounded-xl hover:bg-pink-600 transition-all text-xl"><FaInstagram /></a>
-                <a href="https://wa.me/905455596212" target="_blank" className="bg-white/5 p-3 rounded-xl hover:bg-green-600 transition-all text-xl"><FaWhatsapp /></a>
+                <a href="https://wa.me/905538873616" target="_blank" className="bg-white/5 p-3 rounded-xl hover:bg-green-600 transition-all text-xl"><FaWhatsapp /></a>
               </div>
             </div>
           </div>
