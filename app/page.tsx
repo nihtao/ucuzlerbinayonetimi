@@ -426,7 +426,11 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <FaWhatsapp className="text-green-600 mt-1 shrink-0 text-xl" />
                   <p className="text-gray-600 font-bold">+90 (545) 559 62 12 </p>
-                  <p className="text-gray-600 font-bold">+90 (553) 887 36 16 </p>
+                  
+                </div>
+                  <div className="flex items-start gap-4">
+                  <FaWhatsapp className="text-green-600 mt-1 shrink-0 text-xl" />
+                <p className="text-gray-600 font-bold">+90 (553) 887 36 16 </p>
                 </div>
               </div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
