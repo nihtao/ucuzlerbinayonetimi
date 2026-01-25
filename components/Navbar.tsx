@@ -16,12 +16,11 @@ const Navbar = () => {
     { name: 'HİZMETLERİMİZ', href: '#hizmetler', delay: 0.3 },
     { name: 'REFERANSLAR', href: '#referanslar', delay: 0.4 },
     { name: 'İLETİŞİM', href: '/iletisim', delay: 0.5 },
-     { name: 'KVKK', href: '/kvkk', delay: 0.5 },
+    { name: 'KVKK', href: '/kvkk', delay: 0.5 },
   ];
 
   // --- EN BAŞA DÖNME VE YUMUŞAK GEÇİŞ FONKSİYONU ---
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string, name?: string) => {
-    // 1. Durum: ANA SAYFA veya LOGO'ya tıklandığında en başa kaydır
     if (name === 'ANA SAYFA' || href === '/') {
       if (window.location.pathname === '/') {
         e.preventDefault();
@@ -31,7 +30,6 @@ const Navbar = () => {
       }
     }
 
-    // 2. Durum: Sayfa içi çapa linkleri (#) için yumuşak kaydırma
     if (href.startsWith('#')) {
       e.preventDefault();
       const targetId = href.replace('#', '');
@@ -62,7 +60,8 @@ const Navbar = () => {
             alt="Üçüzler Bina Yönetimi" 
             width={45} 
             height={45} 
-            className="bg-white rounded-full p-1 shadow-inner"
+            className="bg-white rounded-full p-1 shadow-inner object-cover"
+            priority 
           />
           <div className="flex flex-col">
             <span className="font-black text-lg tracking-tighter uppercase leading-none">
@@ -86,7 +85,6 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          {/* TEKLİF AL BUTONU - İletişim Formuna Gider */}
           <Link 
             href="/iletisim" 
             className="bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-2 rounded-full text-xs font-bold hover:shadow-cyan-500/50 shadow-lg transition-all transform hover:-translate-y-1 active:scale-95"
@@ -104,7 +102,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* ŞATAFATLI MOBİL MENÜ PANELİ */}
+      {/* MOBİL MENÜ PANELİ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -114,7 +112,6 @@ const Navbar = () => {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 bg-gradient-to-br from-blue-950 via-blue-900 to-black z-[2000] flex flex-col p-8 md:hidden"
           >
-            {/* Kapatma Butonu */}
             <div className="flex justify-end">
               <motion.button 
                 whileTap={{ rotate: 90, scale: 0.8 }}
@@ -125,7 +122,6 @@ const Navbar = () => {
               </motion.button>
             </div>
 
-            {/* Linkler */}
             <div className="flex-1 flex flex-col justify-center gap-6">
               {menuLinks.map((link) => (
                 <motion.div
@@ -143,7 +139,6 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
-              {/* MOBİL TEKLİF AL BUTONU */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -159,7 +154,6 @@ const Navbar = () => {
               </motion.div>
             </div>
 
-            {/* Sosyal Medya ve İletişim */}
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
