@@ -1,16 +1,12 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { supabase } from '@/utils/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
-// import ReCAPTCHA from "react-google-recaptcha"; // reCAPTCHA pasif
 
 export default function Iletisim() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  // captchaToken kontrolü geçici olarak devre dışı
-  const [captchaToken, setCaptchaToken] = useState<string | null>("bypass"); 
-  // const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [formData, setFormData] = useState({
     ad_soyad: '',
@@ -26,44 +22,33 @@ export default function Iletisim() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    /* reCAPTCHA Kontrolü Yorum Satırı
-    if (!captchaToken) {
-      alert("Lütfen robot olmadığınızı doğrulayın.");
-      return;
-    }
-    */
-
     setLoading(true);
 
-    const { error: dbError } = await supabase
-      .from('mesajlar')
-      .insert([formData]);
-
-    if (dbError) {
-      alert('Veritabanı Hatası: ' + dbError.message);
-      setLoading(false);
-      return;
-    }
-
     try {
+      // 1. Adım: Supabase'e Kayıt
+      const { error: dbError } = await supabase
+        .from('mesajlar')
+        .insert([formData]);
+
+      if (dbError) throw dbError;
+
+      // 2. Adım: E-posta Gönderimi (Opsiyonel API)
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        setSuccess(true);
-        setFormData({ ad_soyad: '', email: '', telefon: '', konu: '', mesaj: '' });
-        // setCaptchaToken(null);
-        // recaptchaRef.current?.reset();
-      }
-    } catch (error) {
+      // Her durumda başarı ekranını göster (E-posta API'si hata verse bile veritabanına kaydolduysa)
+      setSuccess(true);
+      setFormData({ ad_soyad: '', email: '', telefon: '', konu: '', mesaj: '' });
+      
+    } catch (error: any) {
       console.error('Hata:', error);
+      alert('Bir hata oluştu: ' + (error.message || 'Lütfen tekrar deneyin.'));
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   return (
@@ -147,16 +132,6 @@ export default function Iletisim() {
                         <label className="block text-gray-700 font-bold mb-2 text-[11px] uppercase tracking-widest pl-1">Mesajınız</label>
                         <textarea name="mesaj" required rows={4} className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:border-cyan-500 focus:bg-white focus:outline-none transition-all resize-none shadow-sm" placeholder="Size nasıl yardımcı olabiliriz?" value={formData.mesaj} onChange={handleChange}></textarea>
                       </div>
-
-                      {/* reCAPTCHA Alanı Pasif 
-                      <div className="flex justify-center md:justify-start py-2">
-                        <ReCAPTCHA
-                          ref={recaptchaRef}
-                          sitekey="6Ldr9VUsAAAAAL9QV_DjcrDALyuLbZM9KkntMQ8G" 
-                          onChange={(token: string | null) => setCaptchaToken(token)}
-                        />
-                      </div>
-                      */}
 
                       <motion.button 
                         whileHover={{ scale: 1.02, backgroundColor: "#1e3a8a" }}
