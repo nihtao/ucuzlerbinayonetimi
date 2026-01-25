@@ -1,5 +1,6 @@
-"use client"; // En üstte kalmalı
 // @ts-nocheck
+"use client"; // En üstte kalmalı
+
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/utils/supabase';
