@@ -3,13 +3,14 @@
 import { useState, useRef } from 'react';
 import { supabase } from '@/utils/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha"; // reCAPTCHA pasif
 
 export default function Iletisim() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  // captchaToken kontrolü geçici olarak devre dışı
+  const [captchaToken, setCaptchaToken] = useState<string | null>("bypass"); 
+  // const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [formData, setFormData] = useState({
     ad_soyad: '',
@@ -26,10 +27,12 @@ export default function Iletisim() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    /* reCAPTCHA Kontrolü Yorum Satırı
     if (!captchaToken) {
       alert("Lütfen robot olmadığınızı doğrulayın.");
       return;
     }
+    */
 
     setLoading(true);
 
@@ -53,8 +56,8 @@ export default function Iletisim() {
       if (response.ok) {
         setSuccess(true);
         setFormData({ ad_soyad: '', email: '', telefon: '', konu: '', mesaj: '' });
-        setCaptchaToken(null);
-        recaptchaRef.current?.reset();
+        // setCaptchaToken(null);
+        // recaptchaRef.current?.reset();
       }
     } catch (error) {
       console.error('Hata:', error);
@@ -145,6 +148,7 @@ export default function Iletisim() {
                         <textarea name="mesaj" required rows={4} className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:border-cyan-500 focus:bg-white focus:outline-none transition-all resize-none shadow-sm" placeholder="Size nasıl yardımcı olabiliriz?" value={formData.mesaj} onChange={handleChange}></textarea>
                       </div>
 
+                      {/* reCAPTCHA Alanı Pasif 
                       <div className="flex justify-center md:justify-start py-2">
                         <ReCAPTCHA
                           ref={recaptchaRef}
@@ -152,17 +156,14 @@ export default function Iletisim() {
                           onChange={(token: string | null) => setCaptchaToken(token)}
                         />
                       </div>
+                      */}
 
                       <motion.button 
-                        whileHover={captchaToken ? { scale: 1.02, backgroundColor: "#1e3a8a" } : {}}
-                        whileTap={captchaToken ? { scale: 0.98 } : {}}
+                        whileHover={{ scale: 1.02, backgroundColor: "#1e3a8a" }}
+                        whileTap={{ scale: 0.98 }}
                         type="submit" 
-                        disabled={loading || !captchaToken}
-                        className={`w-full py-5 px-6 rounded-2xl font-black text-lg shadow-xl transition-all duration-300 ${
-                          captchaToken 
-                          ? 'bg-blue-900 text-white cursor-pointer' 
-                          : 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                        }`}
+                        disabled={loading}
+                        className="w-full py-5 px-6 rounded-2xl font-black text-lg shadow-xl transition-all duration-300 bg-blue-900 text-white cursor-pointer"
                       >
                         {loading ? 'SİSTEME İŞLENİYOR...' : 'MESAJI GÖNDER'}
                       </motion.button>

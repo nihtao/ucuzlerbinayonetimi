@@ -14,10 +14,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
   title: "Üçüzler Bina Yönetimi | Kayseri Profesyonel Site Yönetimi",
   description: "Kayseri'de şeffaf, güvenilir ve bağımsız hesap yönetimi sunan bina yönetim firması.",
 };
+   
 
 export default function RootLayout({
   children,
