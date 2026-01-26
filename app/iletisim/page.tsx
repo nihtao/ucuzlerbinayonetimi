@@ -26,7 +26,7 @@ const Iletisim = () => {
     setLoading(true);
 
     try {
-      // Backend API'ye istek
+      // API'ye istek at
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,13 +50,14 @@ const Iletisim = () => {
     }
   };
 
-  const inputVars = {
+  // Animasyon Ayarı
+  const inputFocus = {
     focus: { scale: 1.02, borderColor: "#06b6d4", transition: { duration: 0.2 } }
   };
 
   return (
     <section id="iletisim" className="py-20 bg-gray-50 overflow-hidden relative">
-      {/* Arka Plan Süslemeleri */}
+      {/* Arka Plan Efektleri */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
@@ -72,12 +73,9 @@ const Iletisim = () => {
           <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm bg-cyan-50 px-4 py-1 rounded-full">İletişim</span>
           <h2 className="text-3xl md:text-5xl font-black text-blue-900 mt-3">Bize Ulaşın</h2>
           <div className="h-1.5 w-24 bg-gradient-to-r from-blue-900 to-cyan-500 mx-auto mt-4 rounded-full"></div>
-          <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
-            Hizmetlerimiz hakkında bilgi almak veya teklif istemek için aşağıdaki formu doldurabilirsiniz.
-          </p>
         </motion.div>
 
-        {/* Form Alanı - Ortalanmış */}
+        {/* ORTALANMIŞ FORM */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,107 +87,59 @@ const Iletisim = () => {
             
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div whileFocus="focus" variants={inputVars}>
+                <motion.div whileFocus="focus" variants={inputFocus}>
                   <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Ad Soyad</label>
-                  <input 
-                    type="text" name="user_name" value={formData.user_name} onChange={handleChange} required 
-                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
-                    placeholder="Adınız Soyadınız" 
-                  />
+                  <input type="text" name="user_name" value={formData.user_name} onChange={handleChange} required 
+                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" placeholder="Adınız Soyadınız" />
                 </motion.div>
 
-                <motion.div whileFocus="focus" variants={inputVars}>
+                <motion.div whileFocus="focus" variants={inputFocus}>
                   <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Telefon</label>
-                  <input 
-                    type="tel" name="user_phone" value={formData.user_phone} onChange={handleChange} required 
-                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
-                    placeholder="05XX XXX XX XX" 
-                  />
+                  <input type="tel" name="user_phone" value={formData.user_phone} onChange={handleChange} required 
+                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" placeholder="05XX..." />
                 </motion.div>
               </div>
 
-              <motion.div whileFocus="focus" variants={inputVars}>
+              <motion.div whileFocus="focus" variants={inputFocus}>
                 <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">E-posta</label>
-                <input 
-                  type="email" name="user_email" value={formData.user_email} onChange={handleChange} required 
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
-                  placeholder="ornek@mail.com" 
-                />
+                <input type="email" name="user_email" value={formData.user_email} onChange={handleChange} required 
+                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" placeholder="mail@ornek.com" />
               </motion.div>
 
-              <motion.div whileFocus="focus" variants={inputVars}>
+              <motion.div whileFocus="focus" variants={inputFocus}>
                 <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Konu</label>
-                <div className="relative">
-                  <select name="subject" value={formData.subject} onChange={handleChange} className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium appearance-none cursor-pointer shadow-sm">
-                    <option>Yönetim Teklifi Almak İstiyorum</option>
-                    <option>Şikayet / Öneri</option>
-                    <option>Diğer</option>
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
-                </div>
+                <select name="subject" value={formData.subject} onChange={handleChange} className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium cursor-pointer shadow-sm">
+                  <option>Yönetim Teklifi Almak İstiyorum</option>
+                  <option>Şikayet / Öneri</option>
+                  <option>Diğer</option>
+                </select>
               </motion.div>
 
-              <motion.div whileFocus="focus" variants={inputVars}>
+              <motion.div whileFocus="focus" variants={inputFocus}>
                 <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Mesaj</label>
-                <textarea 
-                  name="message" value={formData.message} onChange={handleChange} required rows={5} 
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 resize-none shadow-sm" 
-                  placeholder="Mesajınızı buraya yazın..."
-                ></textarea>
+                <textarea name="message" value={formData.message} onChange={handleChange} required rows={5} 
+                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 resize-none shadow-sm" placeholder="Mesajınız..."></textarea>
               </motion.div>
 
               <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit" 
-                disabled={loading} 
-                className={`w-full py-5 rounded-xl font-bold text-white shadow-lg shadow-blue-900/20 flex items-center justify-center gap-3 transition-all text-lg ${
-                  loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-900 to-blue-700 hover:from-cyan-600 hover:to-cyan-500'
-                }`}
-              >
-                {loading ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    <span>Gönderiliyor...</span>
-                  </div>
-                ) : (
-                  <>
-                    <span>Mesajı Gönder</span>
-                    <FaPaperPlane />
-                  </>
-                )}
+                whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={loading} 
+                className={`w-full py-5 rounded-xl font-bold text-white shadow-lg flex items-center justify-center gap-3 transition-all text-lg ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-900 to-blue-700 hover:from-cyan-600 hover:to-cyan-500'}`}>
+                {loading ? 'Gönderiliyor...' : <><span>Mesajı Gönder</span><FaPaperPlane /></>}
               </motion.button>
             </div>
 
-            {/* Başarı / Hata Mesajları */}
+            {/* Mesaj Kutuları */}
             <AnimatePresence>
               {status === 'success' && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-3 justify-center"
-                >
+                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-3 justify-center">
                   <FaCheckCircle className="text-xl" />
-                  <div>
-                    <span className="font-bold block">Harika!</span>
-                    <span className="text-sm">Mesajınız başarıyla iletildi, teşekkürler.</span>
-                  </div>
+                  <div><span className="font-bold block">Başarılı!</span><span className="text-sm">Mesajınız iletildi.</span></div>
                 </motion.div>
               )}
-
               {status === 'error' && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center gap-3 justify-center"
-                >
+                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center gap-3 justify-center">
                   <FaExclamationCircle className="text-xl" />
-                  <div>
-                    <span className="font-bold block">Hata Oluştu</span>
-                    <span className="text-sm">Lütfen internet bağlantınızı kontrol edin.</span>
-                  </div>
+                  <div><span className="font-bold block">Hata!</span><span className="text-sm">Lütfen internetinizi kontrol edin.</span></div>
                 </motion.div>
               )}
             </AnimatePresence>
