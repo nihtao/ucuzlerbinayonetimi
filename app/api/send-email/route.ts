@@ -4,56 +4,61 @@ import nodemailer from 'nodemailer';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { ad_soyad, email, telefon, konu, mesaj } = body;
+    const { ad_soyad, email, mesaj, telefon, konu } = body;
 
-    // 1. Güvenlik Kontrolü: Değişkenler Vercel'den geliyor mu?
+    // KONTROL: Vercel'den şifreler geliyor mu?
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error("HATA: Vercel Environment Variables (EMAIL_USER veya EMAIL_PASS) eksik!");
-      return NextResponse.json({ success: false, error: "Sunucu yapılandırması eksik." }, { status: 500 });
+        // Eğer Vercel'de bu isimler yoksa hata verir
+        console.error("HATA: Vercel Environment Variables eksik!");
+        return NextResponse.json({ success: false, message: "Sunucu ayarları eksik" }, { status: 500 });
     }
 
-    // 2. SMTP Taşıyıcı Yapılandırması (Garantici Yöntem)
+    // 1. Mail Gönderici Ayarları
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
+      service: 'gmail',
+      host: 'smtp.gmail.com',
       port: 465,
-      secure: true, // SSL/TLS kullanımı
+      secure: true,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        // İŞTE BURAYI DÜZELTTİK:
+        user: process.env.EMAIL_USER, // Artık GMAIL_USER değil EMAIL_USER
+        pass: process.env.EMAIL_PASS, // Artık GMAIL_PASS değil EMAIL_PASS
       },
     });
 
-    // 3. E-posta İçeriği
-    const mailOptions = {
-      from: `"${ad_soyad}" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // Mesaj sana gelsin
-      replyTo: email, // Cevapla dediğinde kullanıcıya gitsin
-      subject: `Üçüzler Bina Yönetimi - Yeni Mesaj: ${konu}`,
+    // --- AŞAMA 1: Müşteriye Otomatik Teşekkür Maili ---
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email, 
+      subject: `Mesajınız Alındı - Üçüzler Yönetim (${konu})`,
       html: `
-        <div style="font-family: sans-serif; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
-          <h2 style="color: #004aad;">Yeni İletişim Formu Mesajı</h2>
-          <p><strong>Gönderen:</strong> ${ad_soyad}</p>
-          <p><strong>E-posta:</strong> ${email}</p>
-          <p><strong>Telefon:</strong> ${telefon}</p>
-          <p><strong>Konu:</strong> ${konu}</p>
-          <hr style="border: 0; border-top: 1px solid #eee;" />
-          <p><strong>Mesaj:</strong></p>
-          <p style="background: #f9f9f9; padding: 15px; border-radius: 5px;">${mesaj}</p>
-        </div>
+        <h3>Sayın ${ad_soyad},</h3>
+        <p>Mesajınız bize ulaştı. En kısa sürede dönüş yapacağız.</p>
+        <p>Saygılarımızla,<br><strong>Üçüzler Bina Yönetimi</strong></p>
       `,
-    };
+    });
 
-    // 4. Gönderim İşlemi
-    await transporter.sendMail(mailOptions);
+    // --- AŞAMA 2: SANA (Yöneticiye) Bildirim Maili ---
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // Senin mail adresine gelecek
+      replyTo: email,
+      subject: `🔔 YENİ MESAJ: ${ad_soyad}`, 
+      html: `
+        <h3>Yeni İletişim Formu Mesajı</h3>
+        <p><strong>Gönderen:</strong> ${ad_soyad}</p>
+        <p><strong>Telefon:</strong> ${telefon}</p>
+        <p><strong>E-posta:</strong> ${email}</p>
+        <p><strong>Konu:</strong> ${konu}</p>
+        <hr>
+        <p>${mesaj}</p>
+      `,
+    });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, message: 'Mailler gönderildi' }, { status: 200 });
+
   } catch (error: any) {
-    // Hatanın tam detayını Vercel Logs'ta görebilmek için:
-    console.error('MAIL_MOTORU_HATASI:', error.message);
-    return NextResponse.json({ 
-      success: false, 
-      error: "Mesaj gönderilirken bir hata oluştu.",
-      debug: error.message 
-    }, { status: 500 });
+    console.error('Mail Hatası:', error.message);
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }
