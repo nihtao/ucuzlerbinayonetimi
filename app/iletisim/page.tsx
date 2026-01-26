@@ -26,7 +26,6 @@ const Iletisim = () => {
     setLoading(true);
 
     try {
-      // API'ye istek at
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,20 +49,17 @@ const Iletisim = () => {
     }
   };
 
-  // Animasyon Ayarı
   const inputFocus = {
     focus: { scale: 1.02, borderColor: "#06b6d4", transition: { duration: 0.2 } }
   };
 
   return (
     <section id="iletisim" className="py-20 bg-gray-50 overflow-hidden relative">
-      {/* Arka Plan Efektleri */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* Başlık */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +71,6 @@ const Iletisim = () => {
           <div className="h-1.5 w-24 bg-gradient-to-r from-blue-900 to-cyan-500 mx-auto mt-4 rounded-full"></div>
         </motion.div>
 
-        {/* ORTALANMIŞ FORM */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +79,6 @@ const Iletisim = () => {
           className="max-w-3xl mx-auto"
         >
           <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 relative">
-            
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div whileFocus="focus" variants={inputFocus}>
@@ -92,7 +86,6 @@ const Iletisim = () => {
                   <input type="text" name="user_name" value={formData.user_name} onChange={handleChange} required 
                     className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" placeholder="Adınız Soyadınız" />
                 </motion.div>
-
                 <motion.div whileFocus="focus" variants={inputFocus}>
                   <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Telefon</label>
                   <input type="tel" name="user_phone" value={formData.user_phone} onChange={handleChange} required 
@@ -128,7 +121,6 @@ const Iletisim = () => {
               </motion.button>
             </div>
 
-            {/* Mesaj Kutuları */}
             <AnimatePresence>
               {status === 'success' && (
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-3 justify-center">
@@ -143,7 +135,6 @@ const Iletisim = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-
           </form>
         </motion.div>
       </div>

@@ -6,21 +6,21 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { user_name, user_email, user_phone, subject, message } = body;
 
-    // KONTROL: Vercel ayarlarından şifreler geliyor mu?
+    // 1. KONTROL: Vercel ayarlarından veriler geliyor mu?
     if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
-      return NextResponse.json({ success: false, message: "Sunucu ayarları (Env Variables) eksik!" }, { status: 500 });
+      return NextResponse.json({ success: false, message: "Vercel ayarları (GMAIL_USER/PASS) eksik!" }, { status: 500 });
     }
 
-    // 1. Postacı Ayarları (Nodemailer)
+    // 2. Postacı Ayarları
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER, // Vercel'deki GMAIL_USER ayarını okur
-        pass: process.env.GMAIL_PASS, // Vercel'deki GMAIL_PASS ayarını okur
+        user: process.env.GMAIL_USER, // Vercel'deki GMAIL_USER değişkenini okur
+        pass: process.env.GMAIL_PASS, // Vercel'deki GMAIL_PASS değişkenini okur
       },
     });
 
-    // 2. Yöneticiye (Sana) Giden Mail
+    // 3. Yöneticiye (Sana) Giden Mail
     const mailToAdmin = {
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_USER,
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       `,
     };
 
-    // 3. Müşteriye Giden (Otomatik Cevap)
+    // 4. Müşteriye Giden (Otomatik Cevap)
     const mailToCustomer = {
       from: `"Üçüzler Bina Yönetimi" <${process.env.GMAIL_USER}>`,
       to: user_email,
@@ -46,11 +46,12 @@ export async function POST(request: Request) {
       html: `
         <h3>Sayın ${user_name},</h3>
         <p>Mesajınız tarafımıza ulaşmıştır. Ekibimiz en kısa sürede size dönüş yapacaktır.</p>
+        <br>
         <p>Saygılarımızla,<br><strong>Üçüzler Bina Yönetimi</strong></p>
       `,
     };
 
-    // Gönderim İşlemi
+    // Gönderim
     await Promise.all([
       transporter.sendMail(mailToAdmin),
       transporter.sendMail(mailToCustomer)
