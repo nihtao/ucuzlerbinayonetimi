@@ -1,9 +1,9 @@
 // @ts-nocheck
-"use client"; // En üstte kalmalı
-
+"use client";
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/utils/supabase';
+// Supabase'i kaldırdık çünkü dosyayı silmiştik.
+// import { supabase } from '@/utils/supabase'; 
 import Hero from '@/components/Hero';
 import Image from 'next/image';
 import About from '@/components/About';
@@ -14,6 +14,7 @@ import {
   FaChevronDown, FaArrowRight, FaCreditCard, 
   FaLeaf, FaBroom, FaUserShield, FaWater, FaTrash, FaInstagram, FaShieldAlt 
 } from 'react-icons/fa';
+import Iletisim from '@/components/Iletisim'; // İletişim formunu eklemeyi unutmayalım
 
 // TypeScript Tipleri
 interface Referans {
@@ -73,7 +74,7 @@ const accordionVariants = {
     marginTop: 16, 
     transition: { 
       duration: 0.4, 
-      ease: "circOut" as any // <-- Buraya 'as any' ekleyerek TypeScript'i susturuyoruz
+      ease: "circOut" as any 
     } 
   }
 };
@@ -90,27 +91,21 @@ export default function Home() {
     }
     window.scrollTo(0, 0);
 
-    const fetchVeriler = async () => {
-      // Referansları Çek
-      const { data: rData } = await supabase.from('referanslar').select('*').order('created_at', { ascending: false });
-      
-      if (!rData || rData.length === 0) {
-        const yedekReferanslar: Referans[] = [
-          { id: 1, baslik: "Modern Yaşam Sitesi", aciklama: "KAYSERİ / TALAS", resim_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
-          { id: 2, baslik: "Gümüş Konaklar", aciklama: "KAYSERİ / KOCASİNAN", resim_url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80" },
-          { id: 3, baslik: "Mavi Şehir Rezidans", aciklama: "KAYSERİ / MELİKGAZİ", resim_url: "https://images.unsplash.com/photo-1460317442991-0ec239f3674f?auto=format&fit=crop&w=800&q=80" },
-          { id: 4, baslik: "Zümrüt Yaşam Evleri", aciklama: "KAYSERİ / MERKEZ", resim_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" }
-        ];
-        setReferanslar(yedekReferanslar);
-      } else {
-        setReferanslar(rData);
-      }
+    // VERİTABANI BAĞLANTISI YERİNE SABİT VERİLER (Build Hatası Almamak İçin)
+    const statikReferanslar: Referans[] = [
+        { id: 1, baslik: "Modern Yaşam Sitesi", aciklama: "KAYSERİ / TALAS", resim_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
+        { id: 2, baslik: "Gümüş Konaklar", aciklama: "KAYSERİ / KOCASİNAN", resim_url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80" },
+        { id: 3, baslik: "Mavi Şehir Rezidans", aciklama: "KAYSERİ / MELİKGAZİ", resim_url: "https://images.unsplash.com/photo-1460317442991-0ec239f3674f?auto=format&fit=crop&w=800&q=80" },
+        { id: 4, baslik: "Zümrüt Yaşam Evleri", aciklama: "KAYSERİ / MERKEZ", resim_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" }
+    ];
+    setReferanslar(statikReferanslar);
 
-      // Duyuruları Çek
-      const { data: dData } = await supabase.from('duyurular').select('*').order('tarih', { ascending: false }).limit(2);
-      setDuyurular(dData || []);
-    };
-    fetchVeriler();
+    const statikDuyurular: Duyuru[] = [
+        { id: 1, baslik: "Kış Dönemi Kalorifer Bakımı", icerik: "Tüm sitelerimizde kazan ve petek bakımları tamamlanmıştır.", etiket: "BAKIM", tarih: "2025-10-15" },
+        { id: 2, baslik: "Yeni Mobil Uygulama", icerik: "Aidat ödemelerinizi artık yeni arayüzümüzden daha hızlı yapabilirsiniz.", etiket: "TEKNOLOJİ", tarih: "2025-10-01" }
+    ];
+    setDuyurular(statikDuyurular);
+
   }, []);
 
   const handleFooterScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -248,10 +243,10 @@ export default function Home() {
             <div className="lg:w-1/2 text-left">
               <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <div className="flex items-center gap-3 mb-4">
-                   <div className="w-12 h-12 relative bg-blue-900 rounded-xl flex items-center justify-center p-2 shadow-lg">
+                    <div className="w-12 h-12 relative bg-blue-900 rounded-xl flex items-center justify-center p-2 shadow-lg">
                       <span className="text-white font-black text-xs uppercase">Aps</span>
-                   </div>
-                   <span className="text-cyan-600 font-bold uppercase tracking-[0.3em] text-sm">Dijital Yönetim Merkezi</span>
+                    </div>
+                    <span className="text-cyan-600 font-bold uppercase tracking-[0.3em] text-sm">Dijital Yönetim Merkezi</span>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter leading-tight mb-6">
                   ŞEFFAF <br/><span className="text-cyan-600">BAĞIMSIZ YÖNETİM</span>
@@ -288,52 +283,50 @@ export default function Home() {
       </section>
 
       {/* --- REFERANSLAR (KAYAN YAZI - SİYAH VARYASYON) --- */}
-<section id="referanslar" className="py-24 bg-white overflow-hidden border-t border-b border-gray-100">
-  <div className="container mx-auto px-4 mb-16 text-center">
-    <motion.span 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      className="text-cyan-500 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
-    >
-      Güvenle Yönetiyoruz
-    </motion.span>
-    <h2 className="text-4xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter">
-      REFERANSLARIMIZ
-    </h2>
-  </div>
+      <section id="referanslar" className="py-24 bg-white overflow-hidden border-t border-b border-gray-100">
+        <div className="container mx-auto px-4 mb-16 text-center">
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-cyan-500 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
+          >
+            Güvenle Yönetiyoruz
+          </motion.span>
+          <h2 className="text-4xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter">
+            REFERANSLARIMIZ
+          </h2>
+        </div>
 
-  <div className="relative flex items-center bg-gray-50 py-10">
-    {/* Yanlardaki gölge efekti akışı daha derin gösterir */}
-    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+        <div className="relative flex items-center bg-gray-50 py-10">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
 
-    <motion.div
-      className="flex whitespace-nowrap gap-16"
-      animate={{
-        x: ["0%", "-50%"]
-      }}
-      transition={{
-        duration: 30, // Hız ayarı
-        ease: "linear",
-        repeat: Infinity,
-      }}
-    >
-      {[
-        "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
-      ].concat([
-         "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
-      ]).map((bina, index) => (
-        <span 
-          key={index} 
-          className="text-4xl md:text-6xl font-black text-blue-900 hover:text-cyan-500 transition-colors duration-300 cursor-default select-none flex items-center gap-16"
-        >
-          {bina}
-          <span className="text-cyan-400 text-4xl">•</span>
-        </span>
-      ))}
-    </motion.div>
-  </div>
-</section>
+          <motion.div
+            className="flex whitespace-nowrap gap-16"
+            animate={{
+              x: ["0%", "-50%"]
+            }}
+            transition={{
+              duration: 30,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {[
+              "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı", 
+              "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
+            ].map((bina, index) => (
+              <span 
+                key={index} 
+                className="text-4xl md:text-6xl font-black text-blue-900 hover:text-cyan-500 transition-colors duration-300 cursor-default select-none flex items-center gap-16"
+              >
+                {bina}
+                <span className="text-cyan-400 text-4xl">•</span>
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* --- YÖNETİM SÜRECİ --- */}
       <section className="py-24 bg-blue-900 text-white relative overflow-hidden text-left">
@@ -370,7 +363,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- HABERLER & DUYURULAR (DİNAMİK) --- */}
+      {/* --- HABERLER & DUYURULAR (STATİK) --- */}
       <section className="py-20 bg-white border-b border-gray-100 text-left">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
@@ -378,9 +371,6 @@ export default function Home() {
               <h2 className="text-3xl font-black text-blue-900 uppercase tracking-tighter">GÜNCEL <span className="text-cyan-600">DUYURULAR</span></h2>
               <p className="text-gray-500 mt-2">Üçüzler Yönetim'den son haberler ve projeler.</p>
             </div>
-            <Link href="/iletisim" className="text-blue-900 font-black uppercase text-sm tracking-widest border-b-2 border-cyan-500 pb-1 hover:text-cyan-600 transition-all">
-              Tümünü Gör →
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -433,15 +423,13 @@ export default function Home() {
                 <p className="text-gray-600 font-bold">+90 (553) 887 36 16 </p>
                 </div>
               </div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/iletisim" className="group bg-blue-900 text-white font-bold py-5 rounded-3xl shadow-xl flex items-center justify-center gap-3 uppercase tracking-widest text-sm transition-all hover:bg-blue-800">
-                  TEKLİF ALMA FORMUNA GİT <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-              </motion.div>
             </div>
           </div>
         </motion.div>
       </section>
+
+      {/* --- FORM KISMI (Buraya bizim yeni component'i koyuyoruz) --- */}
+      <Iletisim />
 
       {/* --- SSS --- */}
       <section id="sss" className="py-24 bg-blue-50 px-4 text-left">
@@ -517,7 +505,7 @@ export default function Home() {
               <h4 className="text-lg font-bold uppercase tracking-widest text-cyan-400 border-b border-white/10 pb-2 inline-block">Kurumsal</h4>
               <div className="flex flex-col gap-4 text-sm text-blue-100/80 font-medium">
                 <Link href="/kvkk" className="hover:text-cyan-400 transition-colors">KVKK Metni</Link>
-                <Link href="/iletisim" className="hover:text-cyan-400 transition-colors">İletişim Formu</Link>
+                <Link href="#iletisim" className="hover:text-cyan-400 transition-colors">İletişim Formu</Link>
               </div>
               <div className="flex gap-4 pt-4">
                 <a href="https://www.instagram.com/ucuzlerbina_yonetimi/" target="_blank" className="bg-white/5 p-3 rounded-xl hover:bg-pink-600 transition-all text-xl"><FaInstagram /></a>
@@ -534,4 +522,3 @@ export default function Home() {
     </main>
   );
 }
-
