@@ -1,229 +1,201 @@
 "use client";
 
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaPaperPlane } from 'react-icons/fa';
-import emailjs from '@emailjs/browser'; // EmailJS'i çağırdık
+import { useState } from 'react';
+import { FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Iletisim = () => {
-  const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const sendEmail = (e: React.FormEvent) => {
+  // Form verileri
+  const [formData, setFormData] = useState({
+    user_name: '',
+    user_phone: '',
+    user_email: '',
+    subject: 'Yönetim Teklifi Almak İstiyorum',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // EmailJS Gönderim Kısmı
-    emailjs
-      .sendForm(
-        'service_pgu2ta2',   // BURAYA KENDİ SERVICE ID'Nİ YAZ (Örn: service_xyz)
-        'template_qpgoqfq',  // BURAYA TEMPLATE ID'Nİ YAZ (Örn: template_abc)
-        formRef.current!,    // Form referansı
-        '6Xmo1ciGX0RhHmljC'    // BURAYA PUBLIC KEY'Nİ YAZ (Örn: user_12345)
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setLoading(false);
-          setStatus('success');
-          // Formu temizle
-          if (formRef.current) formRef.current.reset();
-          // 5 saniye sonra başarı mesajını kaldır
-          setTimeout(() => setStatus('idle'), 5000);
-        },
-        (error) => {
-          console.log(error.text);
-          setLoading(false);
-          setStatus('error');
-        }
-      );
+    try {
+      // Backend API'ye istek
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus('success');
+        setFormData({ user_name: '', user_phone: '', user_email: '', subject: 'Yönetim Teklifi Almak İstiyorum', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error(data.message || 'Hata');
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const inputVars = {
+    focus: { scale: 1.02, borderColor: "#06b6d4", transition: { duration: 0.2 } }
   };
 
   return (
-    <section id="iletisim" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="iletisim" className="py-20 bg-gray-50 overflow-hidden relative">
+      {/* Arka Plan Süslemeleri */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        
         {/* Başlık */}
-        <div className="text-center mb-16">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-cyan-500 font-bold tracking-wider uppercase text-sm"
-          >
-            Bize Ulaşın
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-black text-blue-900 mt-2"
-          >
-            İLETİŞİME GEÇİN
-          </motion.h2>
-          <div className="h-1 w-20 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10"
+        >
+          <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm bg-cyan-50 px-4 py-1 rounded-full">İletişim</span>
+          <h2 className="text-3xl md:text-5xl font-black text-blue-900 mt-3">Bize Ulaşın</h2>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-blue-900 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+          <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
+            Hizmetlerimiz hakkında bilgi almak veya teklif istemek için aşağıdaki formu doldurabilirsiniz.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Sol Taraf: İletişim Bilgileri (Aynı kaldı) */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="space-y-8"
-          >
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-blue-900 mb-6">İletişim Bilgileri</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-cyan-100 p-3 rounded-full text-cyan-600">
-                    <FaMapMarkerAlt size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-900">Adres</h4>
-                    <p className="text-gray-600">Cumhuriyet Mah. Vatan Cad.<br/>No: 12/A Melikgazi / KAYSERİ</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-cyan-100 p-3 rounded-full text-cyan-600">
-                    <FaPhone size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-900">Telefon</h4>
-                    <a href="tel:+905551234567" className="text-gray-600 hover:text-cyan-600 transition-colors">
-                      +90 (555) 123 45 67
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-cyan-100 p-3 rounded-full text-cyan-600">
-                    <FaEnvelope size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-900">E-posta</h4>
-                    <a href="mailto:info@ucuzlerbinayonetimi.com" className="text-gray-600 hover:text-cyan-600 transition-colors">
-                      info@ucuzlerbinayonetimi.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Whatsapp Butonu */}
-              <a 
-                href="https://wa.me/905551234567" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 flex items-center justify-center space-x-2 w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-bold transition-all transform hover:-translate-y-1"
-              >
-                <FaWhatsapp size={24} />
-                <span>WhatsApp'tan Yazın</span>
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Sağ Taraf: Form (EmailJS Entegreli) */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden"
-          >
-            {/* Arka Plan Süsü */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-50 rounded-bl-full -z-0"></div>
-
-            <h3 className="text-2xl font-bold text-blue-900 mb-2 relative z-10">Bize Yazın</h3>
-            <p className="text-gray-500 mb-8 relative z-10">Size en kısa sürede dönüş yapacağız.</p>
-
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-6 relative z-10">
+        {/* Form Alanı - Ortalanmış */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mx-auto"
+        >
+          <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 relative">
+            
+            <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Ad Soyad</label>
+                <motion.div whileFocus="focus" variants={inputVars}>
+                  <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Ad Soyad</label>
                   <input 
-                    type="text" 
-                    name="user_name" // EmailJS şablonundaki {{user_name}} ile eşleşmeli
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all text-gray-900"
-                    placeholder="Adınız Soyadınız"
+                    type="text" name="user_name" value={formData.user_name} onChange={handleChange} required 
+                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
+                    placeholder="Adınız Soyadınız" 
                   />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Telefon</label>
+                </motion.div>
+
+                <motion.div whileFocus="focus" variants={inputVars}>
+                  <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Telefon</label>
                   <input 
-                    type="tel" 
-                    name="user_phone" // EmailJS şablonundaki {{user_phone}}
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all text-gray-900"
-                    placeholder="05XX XXX XX XX"
+                    type="tel" name="user_phone" value={formData.user_phone} onChange={handleChange} required 
+                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
+                    placeholder="05XX XXX XX XX" 
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">E-posta Adresi</label>
+              <motion.div whileFocus="focus" variants={inputVars}>
+                <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">E-posta</label>
                 <input 
-                  type="email" 
-                  name="user_email" // EmailJS şablonundaki {{user_email}}
-                  required
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all text-gray-900"
-                  placeholder="ornek@mail.com"
+                  type="email" name="user_email" value={formData.user_email} onChange={handleChange} required 
+                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
+                  placeholder="ornek@mail.com" 
                 />
-              </div>
+              </motion.div>
 
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">Konu</label>
-                <select 
-                  name="subject" // EmailJS şablonundaki {{subject}}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all text-gray-900"
-                >
-                  <option>Yönetim Teklifi Almak İstiyorum</option>
-                  <option>Şikayet / Öneri</option>
-                  <option>İş Başvurusu</option>
-                  <option>Diğer</option>
-                </select>
-              </div>
+              <motion.div whileFocus="focus" variants={inputVars}>
+                <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Konu</label>
+                <div className="relative">
+                  <select name="subject" value={formData.subject} onChange={handleChange} className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium appearance-none cursor-pointer shadow-sm">
+                    <option>Yönetim Teklifi Almak İstiyorum</option>
+                    <option>Şikayet / Öneri</option>
+                    <option>Diğer</option>
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
+                </div>
+              </motion.div>
 
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">Mesajınız</label>
+              <motion.div whileFocus="focus" variants={inputVars}>
+                <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Mesaj</label>
                 <textarea 
-                  name="message" // EmailJS şablonundaki {{message}}
-                  required
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all text-gray-900 resize-none"
+                  name="message" value={formData.message} onChange={handleChange} required rows={5} 
+                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 resize-none shadow-sm" 
                   placeholder="Mesajınızı buraya yazın..."
                 ></textarea>
-              </div>
+              </motion.div>
 
-              <button 
-                type="submit"
-                disabled={loading}
-                className={`w-full py-4 rounded-xl font-bold text-white shadow-lg shadow-cyan-500/30 flex items-center justify-center space-x-2 transition-all ${
-                  loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-900 to-blue-800 hover:from-cyan-600 hover:to-cyan-500 hover:scale-[1.02]'
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit" 
+                disabled={loading} 
+                className={`w-full py-5 rounded-xl font-bold text-white shadow-lg shadow-blue-900/20 flex items-center justify-center gap-3 transition-all text-lg ${
+                  loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-900 to-blue-700 hover:from-cyan-600 hover:to-cyan-500'
                 }`}
               >
                 {loading ? (
-                  <span>Gönderiliyor...</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Gönderiliyor...</span>
+                  </div>
                 ) : (
                   <>
                     <span>Mesajı Gönder</span>
                     <FaPaperPlane />
                   </>
                 )}
-              </button>
+              </motion.button>
+            </div>
 
-              {/* Durum Mesajları */}
+            {/* Başarı / Hata Mesajları */}
+            <AnimatePresence>
               {status === 'success' && (
-                <div className="bg-green-100 text-green-700 p-4 rounded-xl text-center font-bold">
-                  Mesajınız başarıyla iletildi! En kısa sürede döneceğiz.
-                </div>
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mt-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-3 justify-center"
+                >
+                  <FaCheckCircle className="text-xl" />
+                  <div>
+                    <span className="font-bold block">Harika!</span>
+                    <span className="text-sm">Mesajınız başarıyla iletildi, teşekkürler.</span>
+                  </div>
+                </motion.div>
               )}
+
               {status === 'error' && (
-                <div className="bg-red-100 text-red-700 p-4 rounded-xl text-center font-bold">
-                  Bir hata oluştu. Lütfen WhatsApp üzerinden ulaşın.
-                </div>
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mt-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center gap-3 justify-center"
+                >
+                  <FaExclamationCircle className="text-xl" />
+                  <div>
+                    <span className="font-bold block">Hata Oluştu</span>
+                    <span className="text-sm">Lütfen internet bağlantınızı kontrol edin.</span>
+                  </div>
+                </motion.div>
               )}
-            </form>
-          </motion.div>
-        </div>
+            </AnimatePresence>
+
+          </form>
+        </motion.div>
       </div>
     </section>
   );
