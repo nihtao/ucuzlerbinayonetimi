@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     const { user_name, user_email, user_phone, subject, message } = body;
 
     const GMAIL_USER = process.env.GMAIL_USER || 'ucuzlerbinayonetimi@gmail.com';
-    const GMAIL_PASS = process.env.GMAIL_PASS || 'yicc dyui sing mowx';
+    const GMAIL_PASS = process.env.GMAIL_PASS || 'sifz fjpj chsp iedo';
 
     if (!GMAIL_USER || !GMAIL_PASS) {
       return NextResponse.json({ success: false, message: "Sunucu ayarları eksik (GMAIL_USER/PASS bulunamadı)" }, { status: 500 });
