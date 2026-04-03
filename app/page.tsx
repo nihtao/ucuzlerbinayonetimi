@@ -286,83 +286,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- REFERANSLAR (PROFESYONEL KART VARYASYONU) --- */}
-      <section id="referanslar" className="py-24 bg-white overflow-hidden border-t border-b border-gray-100 relative">
-        {/* Arka plan parlama süslemeleri */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-50 rounded-full blur-[100px] opacity-60 -z-10 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-50 rounded-full blur-[100px] opacity-60 -z-10 pointer-events-none"></div>
+      {/* --- REFERANS VİZYONU (TİPOGRAFİK BANNER) --- */}
+      <section id="referanslar" className="py-24 md:py-32 bg-blue-900 relative overflow-hidden flex items-center justify-center min-h-[50vh]">
+        {/* Arka plan süslemeleri */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500 rounded-full blur-[150px] opacity-20 -z-0 pointer-events-none mix-blend-screen"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-400 rounded-full blur-[150px] opacity-20 -z-0 pointer-events-none mix-blend-screen"></div>
 
-        <div className="container mx-auto px-4">
-          {/* Başlık Alanı */}
-          <div className="text-center mb-16">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-cyan-600 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
-            >
-              Güvenle Yönetiyoruz
-            </motion.span>
-            <motion.h2 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter"
-            >
-              REFERANSLARIMIZ
-            </motion.h2>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="h-1.5 w-24 bg-gradient-to-r from-blue-900 to-cyan-500 mx-auto mt-6 rounded-full"
-            ></motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-gray-500 mt-6 max-w-2xl mx-auto italic"
-            >
-              Şehrin önde gelen, markalaşmış yaşam alanlarını güvence altına alıyor ve şeffaf yönetim anlayışıyla değer katıyoruz.
-            </motion.p>
-          </div>
+        {/* Çok ince doku (grid pattern) */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:20px_20px] opacity-30 z-0"></div>
 
-          {/* Kart Izgarası */}
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-center max-w-4xl mx-auto"
           >
-            {referanslar.slice(0, 8).map((ref, index) => (
-              <motion.div 
-                key={ref.id}
-                variants={cardVariants}
-                whileHover="hover"
-                className="group bg-gray-50 hover:bg-blue-900 rounded-[2rem] p-8 border border-gray-100 hover:border-cyan-500 transition-colors duration-500 flex flex-col items-center justify-center text-center cursor-default shadow-sm hover:shadow-2xl h-[260px]"
-              >
-                <div className="w-16 h-16 rounded-full bg-white group-hover:bg-blue-800 flex items-center justify-center mb-6 shadow-sm transition-colors duration-500">
-                   <span className="text-2xl font-black text-cyan-600 group-hover:text-cyan-400">
-                     0{index + 1}
-                   </span>
-                </div>
-                
-                <h3 className="text-xl md:text-2xl font-black text-blue-900 group-hover:text-white uppercase tracking-tight mb-3 transition-colors duration-500">
-                  {ref.baslik}
-                </h3>
-                
-                <div className="w-12 h-1 bg-cyan-200 group-hover:bg-cyan-500 rounded-full mb-4 transition-colors duration-500"></div>
-                
-                <p className="text-gray-500 group-hover:text-cyan-50 font-medium text-sm transition-colors duration-500 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:bg-cyan-300"></span>
-                  {ref.aciklama}
-                </p>
-              </motion.div>
-            ))}
+            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs md:text-sm mb-6 block drop-shadow-md">
+              Mükemmelliyetin Karşılığı
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-tight mb-8">
+               EN BÜYÜK REFERANSIMIZ, <br className="hidden md:block" /> 
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-200">
+                 DEĞİŞMEYEN KALİTEMİZDİR.
+               </span>
+            </h2>
+            
+            <div className="w-24 h-1 bg-cyan-500 mx-auto rounded-full mb-8 shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
+            
+            <p className="text-blue-100/90 text-lg md:text-xl md:leading-relaxed font-light">
+              Yılların getirdiği tecrübe ile binlerce haneye güven ve şeffaflık taşıyoruz. Bina isminden bağımsız olarak, 
+              dokunduğumuz her ortak yaşam alanında kendi kalite imzamızı bırakıyoruz. Çünkü bizim için asıl önemli olan binalar değil, içinde huzurla yaşayan ailelerdir.
+            </p>
           </motion.div>
         </div>
       </section>
