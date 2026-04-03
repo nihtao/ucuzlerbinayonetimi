@@ -14,13 +14,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: "Sunucu ayarları eksik (GMAIL_USER/PASS bulunamadı)" }, { status: 500 });
     }
 
-    // 2. Mail Gönderici Ayarları
+    // 2. Mail Gönderici Ayarları (Vercel-uyumlu SMTP SSL/TLS)
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // SSL/TLS için true
       auth: {
         user: GMAIL_USER,
         pass: GMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false // Engelleri azaltmak için
+      }
     });
 
     // 3. Yöneticiye (Sana) Giden Mail Şablonu
