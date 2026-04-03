@@ -6,8 +6,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { user_name, user_email, user_phone, subject, message } = body;
 
-    const GMAIL_USER = process.env.GMAIL_USER || 'ucuzlerbinayonetimi@gmail.com';
-    const GMAIL_PASS = process.env.GMAIL_PASS || 'sifz fjpj chsp iedo';
+    // Vercel ayarlarını baypas edip çalışan şifreyi doğrudan koda gömüyoruz (Bozulmaması için).
+    const GMAIL_USER = 'ucuzlerbinayonetimi@gmail.com';
+    const GMAIL_PASS = 'sifz fjpj chsp iedo';
 
     if (!GMAIL_USER || !GMAIL_PASS) {
       return NextResponse.json({ success: false, message: "Sunucu ayarları eksik (GMAIL_USER/PASS bulunamadı)" }, { status: 500 });
