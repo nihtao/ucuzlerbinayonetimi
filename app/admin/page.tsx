@@ -13,9 +13,11 @@ export default function AdminPanel() {
 
   type Mesaj = { id: number; ad_soyad: string; telefon: string; mesaj: string; created_at: string };
   type Referans = { id: number; baslik: string; aciklama: string; resim_url: string; created_at: string };
+  type Duyuru = { id: number; etiket: string; baslik: string; icerik: string; tarih: string };
   
   const [mesajlar, setMesajlar] = useState<Mesaj[]>([]);
   const [referanslar, setReferanslar] = useState<Referans[]>([]);
+  const [duyurular, setDuyurular] = useState<Duyuru[]>([]);
   
   const [uploading, setUploading] = useState(false);
   const [yeniReferans, setYeniReferans] = useState({
@@ -23,6 +25,7 @@ export default function AdminPanel() {
     aciklama: '',
     resim: null as File | null
   });
+  const [yeniDuyuru, setYeniDuyuru] = useState({ etiket: '', baslik: '', icerik: '', tarih: '' });
 
   // --- GİRİŞ FONKSİYONLARI ---
   const handleLogin = (e: React.FormEvent) => {
@@ -39,6 +42,7 @@ export default function AdminPanel() {
   const fetchVeriler = () => {
     fetchMesajlar();
     fetchReferanslar();
+    fetchDuyurular();
   };
 
   // --- MESAJ İŞLEMLERİ ---
@@ -116,6 +120,47 @@ export default function AdminPanel() {
     setReferanslar(referanslar.filter(r => r.id !== id));
   };
 
+  // --- DUYURU İŞLEMLERİ ---
+  const fetchDuyurular = async () => {
+    const { data } = await supabase.from('duyurular').select('*').order('tarih', { ascending: false });
+    setDuyurular(data || []);
+  };
+
+  const duyuruEkle = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!yeniDuyuru.baslik || !yeniDuyuru.icerik || !yeniDuyuru.tarih) {
+      alert("Lütfen başlık, içerik ve tarih giriniz.");
+      return;
+    }
+    setUploading(true);
+    try {
+      const { data, error } = await supabase
+        .from('duyurular')
+        .insert([{ 
+            etiket: yeniDuyuru.etiket || 'DUYURU', 
+            baslik: yeniDuyuru.baslik, 
+            icerik: yeniDuyuru.icerik,
+            tarih: yeniDuyuru.tarih
+        }])
+        .select();
+
+      if (error) throw error;
+      if (data) setDuyurular([data[0], ...duyurular]);
+      setYeniDuyuru({ etiket: '', baslik: '', icerik: '', tarih: '' });
+      alert("Duyuru başarıyla eklendi!");
+    } catch (error: any) {
+      alert("Hata oluştu: " + error.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const duyuruSil = async (id: number) => {
+    if (!confirm('Duyuruyu silmek istediğine emin misin?')) return;
+    await supabase.from('duyurular').delete().eq('id', id);
+    setDuyurular(duyurular.filter(d => d.id !== id));
+  };
+
   // --- GİRİŞ EKRANI ---
   if (!isAuthenticated) {
     return (
@@ -171,6 +216,12 @@ export default function AdminPanel() {
               className={`px-4 py-2 rounded-lg transition ${activeTab === 'referanslar' ? 'bg-blue-700 shadow-inner' : 'hover:bg-blue-800'}`}
             >
               Referanslar
+            </button>
+            <button 
+              onClick={() => setActiveTab('duyurular')}
+              className={`px-4 py-2 rounded-lg transition ${activeTab === 'duyurular' ? 'bg-blue-700 shadow-inner' : 'hover:bg-blue-800'}`}
+            >
+              Duyurular
             </button>
             <button onClick={() => setIsAuthenticated(false)} className="text-red-300 hover:text-red-100 ml-2 md:ml-4 text-sm">Çıkış</button>
           </div>
@@ -291,6 +342,92 @@ export default function AdminPanel() {
                         BU REFERANSI SİL
                       </button>
                     </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
+        )}
+
+        {/* --- DUYURULAR --- */}
+        {activeTab === 'duyurular' && (
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Duyuru Yönetimi</h2>
+            
+            <motion.div 
+              layout
+              className="bg-white p-6 rounded-xl shadow-lg mb-8 border-t-4 border-cyan-500"
+            >
+              <h3 className="text-lg font-bold mb-4 text-blue-900">Yeni Duyuru Ekle</h3>
+              <form onSubmit={duyuruEkle} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  placeholder="Başlık (Örn: Aidat Ödemeleri Hk.)" 
+                  className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  value={yeniDuyuru.baslik}
+                  onChange={e => setYeniDuyuru({...yeniDuyuru, baslik: e.target.value})}
+                  required
+                />
+                <input 
+                  type="text" 
+                  placeholder="Etiket (Örn: DUYURU)" 
+                  className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  value={yeniDuyuru.etiket}
+                  onChange={e => setYeniDuyuru({...yeniDuyuru, etiket: e.target.value})}
+                />
+                <input 
+                  type="date" 
+                  className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none md:col-span-2"
+                  value={yeniDuyuru.tarih}
+                  onChange={e => setYeniDuyuru({...yeniDuyuru, tarih: e.target.value})}
+                  required
+                />
+                <div className="md:col-span-2">
+                  <textarea 
+                    placeholder="Duyuru içeriği buraya..." 
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-32"
+                    value={yeniDuyuru.icerik}
+                    onChange={e => setYeniDuyuru({...yeniDuyuru, icerik: e.target.value})}
+                    required
+                  ></textarea>
+                </div>
+                <motion.button 
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  disabled={uploading}
+                  className="md:col-span-2 bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 font-bold disabled:opacity-50 shadow-md"
+                >
+                  {uploading ? 'İşleniyor...' : 'DUYURUYU YAYINLA'}
+                </motion.button>
+              </form>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <AnimatePresence>
+                {duyurular.map((duyuru, index) => (
+                  <motion.div 
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5 }}
+                    transition={{ delay: index * 0.05 }}
+                    key={duyuru.id} 
+                    className="bg-white rounded-xl shadow-sm p-5 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="bg-cyan-100 text-cyan-800 text-[10px] font-bold px-2 py-1 rounded">{duyuru.etiket || 'DUYURU'}</span>
+                        <span className="text-gray-400 text-xs">{new Date(duyuru.tarih).toLocaleDateString('tr-TR')}</span>
+                      </div>
+                      <h4 className="font-bold text-lg text-blue-900 mb-2">{duyuru.baslik}</h4>
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-4">{duyuru.icerik}</p>
+                    </div>
+                    <button 
+                      onClick={() => duyuruSil(duyuru.id)} 
+                      className="w-full bg-red-50 text-red-600 py-2 rounded-lg text-sm font-bold hover:bg-red-600 hover:text-white transition"
+                    >
+                      SİL
+                    </button>
                   </motion.div>
                 ))}
               </AnimatePresence>
