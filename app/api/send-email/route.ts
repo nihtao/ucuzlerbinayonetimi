@@ -6,15 +6,8 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { user_name, user_email, user_phone, subject, message } = body;
 
-    // Vercel ayarları yerine doğrudan doğrulanmış verileri kullanıyoruz.
-    const GMAIL_USER = 'ucuzlerbinayonetimi@gmail.com';
-    const GMAIL_PASS = 'sifz fjpj chsp iedo';
-
-    // DEBUG: Bağlantı parametrelerini görelim
-    console.log('--- GMAIL HARDCODED CONFIG ---');
-    console.log('USER:', GMAIL_USER);
-    console.log('PASS LENGTH:', GMAIL_PASS.length);
-    console.log('PASS MASKED:', GMAIL_PASS ? GMAIL_PASS.substring(0, 2) + '****' + GMAIL_PASS.slice(-2) : 'MISSING');
+    const GMAIL_USER = process.env.GMAIL_USER || 'ucuzlerbinayonetimi@gmail.com';
+    const GMAIL_PASS = process.env.GMAIL_PASS || 'sifz fjpj chsp iedo';
 
     if (!GMAIL_USER || !GMAIL_PASS) {
       return NextResponse.json({ success: false, message: "Sunucu ayarları eksik (GMAIL_USER/PASS bulunamadı)" }, { status: 500 });
