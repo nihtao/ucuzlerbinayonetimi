@@ -14,11 +14,11 @@ export default function AdminPanel() {
   type Mesaj = { id: number; ad_soyad: string; telefon: string; mesaj: string; created_at: string };
   type Referans = { id: number; baslik: string; aciklama: string; resim_url: string; created_at: string };
   type Duyuru = { id: number; etiket: string; baslik: string; icerik: string; tarih: string };
-  
+
   const [mesajlar, setMesajlar] = useState<Mesaj[]>([]);
   const [referanslar, setReferanslar] = useState<Referans[]>([]);
   const [duyurular, setDuyurular] = useState<Duyuru[]>([]);
-  
+
   const [uploading, setUploading] = useState(false);
   const [yeniReferans, setYeniReferans] = useState({
     baslik: '',
@@ -30,7 +30,7 @@ export default function AdminPanel() {
   // --- GİRİŞ FONKSİYONLARI ---
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const correctPassword = process.env.NEXT_PUBLIC_ADMIN_PASS || 'ucuzler123';
+    const correctPassword = process.env.NEXT_PUBLIC_ADMIN_PASS || 'uCu<Zler2025';
     if (passwordInput === correctPassword) {
       setIsAuthenticated(true);
       fetchVeriler();
@@ -94,10 +94,10 @@ export default function AdminPanel() {
 
       const { data: dbData, error: dbError } = await supabase
         .from('referanslar')
-        .insert([{ 
-            baslik: yeniReferans.baslik, 
-            aciklama: yeniReferans.aciklama, 
-            resim_url: publicUrl 
+        .insert([{
+          baslik: yeniReferans.baslik,
+          aciklama: yeniReferans.aciklama,
+          resim_url: publicUrl
         }])
         .select();
 
@@ -136,11 +136,11 @@ export default function AdminPanel() {
     try {
       const { data, error } = await supabase
         .from('duyurular')
-        .insert([{ 
-            etiket: yeniDuyuru.etiket || 'DUYURU', 
-            baslik: yeniDuyuru.baslik, 
-            icerik: yeniDuyuru.icerik,
-            tarih: yeniDuyuru.tarih
+        .insert([{
+          etiket: yeniDuyuru.etiket || 'DUYURU',
+          baslik: yeniDuyuru.baslik,
+          icerik: yeniDuyuru.icerik,
+          tarih: yeniDuyuru.tarih
         }])
         .select();
 
@@ -165,24 +165,24 @@ export default function AdminPanel() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <motion.form 
+        <motion.form
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          onSubmit={handleLogin} 
+          onSubmit={handleLogin}
           className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md"
         >
           <div className="flex flex-col items-center mb-6">
             <Image src="/binayonetimi.jpeg" alt="Logo" width={80} height={80} className="mb-4 rounded-full" />
             <h1 className="text-2xl font-bold text-blue-900 text-center">Yönetici Girişi</h1>
           </div>
-          <input 
-            type="password" 
-            className="w-full p-3 border rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 outline-none" 
+          <input
+            type="password"
+            className="w-full p-3 border rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder="Şifre"
             value={passwordInput}
             onChange={(e) => setPasswordInput(e.target.value)}
           />
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="w-full bg-blue-900 text-white p-3 rounded-lg font-bold hover:bg-blue-800 transition"
@@ -200,24 +200,24 @@ export default function AdminPanel() {
       <nav className="bg-blue-900 text-white p-4 sticky top-0 z-50 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-             {/* LOGO BURAYA EKLENDİ */}
+            {/* LOGO BURAYA EKLENDİ */}
             <Image src="/binayonetimi.jpeg" alt="Logo" width={40} height={40} className="bg-white rounded-full p-1" />
             <h1 className="text-xl font-bold hidden md:block">Üçüzler Yönetim Paneli</h1>
           </div>
           <div className="flex gap-2 md:gap-4">
-             <button 
+            <button
               onClick={() => setActiveTab('mesajlar')}
               className={`px-4 py-2 rounded-lg transition ${activeTab === 'mesajlar' ? 'bg-blue-700 shadow-inner' : 'hover:bg-blue-800'}`}
             >
               Mesajlar
             </button>
-            <button 
+            <button
               onClick={() => setActiveTab('referanslar')}
               className={`px-4 py-2 rounded-lg transition ${activeTab === 'referanslar' ? 'bg-blue-700 shadow-inner' : 'hover:bg-blue-800'}`}
             >
               Referanslar
             </button>
-            <button 
+            <button
               onClick={() => setActiveTab('duyurular')}
               className={`px-4 py-2 rounded-lg transition ${activeTab === 'duyurular' ? 'bg-blue-700 shadow-inner' : 'hover:bg-blue-800'}`}
             >
@@ -228,7 +228,7 @@ export default function AdminPanel() {
         </div>
       </nav>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="container mx-auto p-6"
@@ -250,15 +250,15 @@ export default function AdminPanel() {
                 <tbody className="divide-y divide-gray-200">
                   <AnimatePresence>
                     {mesajlar.map((m) => (
-                      <motion.tr 
-                        initial={{ opacity: 0 }} 
-                        animate={{ opacity: 1 }} 
+                      <motion.tr
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         exit={{ opacity: 0, x: -50 }}
-                        key={m.id} 
+                        key={m.id}
                         className="hover:bg-gray-50 transition"
                       >
                         <td className="p-4 text-sm text-gray-500">{new Date(m.created_at).toLocaleDateString('tr-TR')}</td>
-                        <td className="p-4 font-medium">{m.ad_soyad}<br/><span className="text-xs text-blue-600">{m.telefon}</span></td>
+                        <td className="p-4 font-medium">{m.ad_soyad}<br /><span className="text-xs text-blue-600">{m.telefon}</span></td>
                         <td className="p-4 text-gray-600 text-sm">{m.mesaj}</td>
                         <td className="p-4">
                           <button onClick={() => mesajSil(m.id)} className="text-red-500 hover:text-red-700 font-bold">Sil</button>
@@ -276,32 +276,32 @@ export default function AdminPanel() {
         {activeTab === 'referanslar' && (
           <div>
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Referans Yönetimi</h2>
-            
-            <motion.div 
+
+            <motion.div
               layout
               className="bg-white p-6 rounded-xl shadow-lg mb-8 border-t-4 border-green-500"
             >
               <h3 className="text-lg font-bold mb-4 text-blue-900">Yeni Bina Ekle</h3>
               <form onSubmit={referansEkle} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                  type="text" 
-                  placeholder="Bina Adı (Örn: Yıldız Apt.)" 
+                <input
+                  type="text"
+                  placeholder="Bina Adı (Örn: Yıldız Apt.)"
                   className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   value={yeniReferans.baslik}
-                  onChange={e => setYeniReferans({...yeniReferans, baslik: e.target.value})}
+                  onChange={e => setYeniReferans({ ...yeniReferans, baslik: e.target.value })}
                   required
                 />
-                <input 
-                  type="text" 
-                  placeholder="Konum (Örn: Melikgazi)" 
+                <input
+                  type="text"
+                  placeholder="Konum (Örn: Melikgazi)"
                   className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   value={yeniReferans.aciklama}
-                  onChange={e => setYeniReferans({...yeniReferans, aciklama: e.target.value})}
+                  onChange={e => setYeniReferans({ ...yeniReferans, aciklama: e.target.value })}
                 />
                 <div className="md:col-span-2 border-2 border-dashed p-4 rounded-lg bg-gray-50 flex flex-col items-center">
                   <input type="file" accept="image/*" onChange={handleDosyaSec} className="text-sm" required />
                 </div>
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={uploading}
@@ -315,28 +315,28 @@ export default function AdminPanel() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               <AnimatePresence>
                 {referanslar.map((ref, index) => (
-                  <motion.div 
+                  <motion.div
                     layout
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.5 }}
                     transition={{ delay: index * 0.05 }}
-                    key={ref.id} 
+                    key={ref.id}
                     className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-shadow"
                   >
                     <div className="h-48 relative overflow-hidden">
-                      <Image 
-                        src={ref.resim_url} 
-                        alt={ref.baslik} 
-                        fill 
+                      <Image
+                        src={ref.resim_url}
+                        alt={ref.baslik}
+                        fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>
                     <div className="p-4">
                       <h4 className="font-bold text-lg text-gray-800">{ref.baslik}</h4>
                       <p className="text-sm text-gray-500 mb-4 flex items-center gap-1">📍 {ref.aciklama}</p>
-                      <button 
-                        onClick={() => referansSil(ref.id)} 
+                      <button
+                        onClick={() => referansSil(ref.id)}
                         className="w-full bg-red-50 text-red-600 py-2 rounded-lg text-sm font-bold hover:bg-red-600 hover:text-white transition"
                       >
                         BU REFERANSI SİL
@@ -353,45 +353,45 @@ export default function AdminPanel() {
         {activeTab === 'duyurular' && (
           <div>
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Duyuru Yönetimi</h2>
-            
-            <motion.div 
+
+            <motion.div
               layout
               className="bg-white p-6 rounded-xl shadow-lg mb-8 border-t-4 border-cyan-500"
             >
               <h3 className="text-lg font-bold mb-4 text-blue-900">Yeni Duyuru Ekle</h3>
               <form onSubmit={duyuruEkle} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                  type="text" 
-                  placeholder="Başlık (Örn: Aidat Ödemeleri Hk.)" 
+                <input
+                  type="text"
+                  placeholder="Başlık (Örn: Aidat Ödemeleri Hk.)"
                   className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   value={yeniDuyuru.baslik}
-                  onChange={e => setYeniDuyuru({...yeniDuyuru, baslik: e.target.value})}
+                  onChange={e => setYeniDuyuru({ ...yeniDuyuru, baslik: e.target.value })}
                   required
                 />
-                <input 
-                  type="text" 
-                  placeholder="Etiket (Örn: DUYURU)" 
+                <input
+                  type="text"
+                  placeholder="Etiket (Örn: DUYURU)"
                   className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   value={yeniDuyuru.etiket}
-                  onChange={e => setYeniDuyuru({...yeniDuyuru, etiket: e.target.value})}
+                  onChange={e => setYeniDuyuru({ ...yeniDuyuru, etiket: e.target.value })}
                 />
-                <input 
-                  type="date" 
+                <input
+                  type="date"
                   className="p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none md:col-span-2"
                   value={yeniDuyuru.tarih}
-                  onChange={e => setYeniDuyuru({...yeniDuyuru, tarih: e.target.value})}
+                  onChange={e => setYeniDuyuru({ ...yeniDuyuru, tarih: e.target.value })}
                   required
                 />
                 <div className="md:col-span-2">
-                  <textarea 
-                    placeholder="Duyuru içeriği buraya..." 
+                  <textarea
+                    placeholder="Duyuru içeriği buraya..."
                     className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-32"
                     value={yeniDuyuru.icerik}
-                    onChange={e => setYeniDuyuru({...yeniDuyuru, icerik: e.target.value})}
+                    onChange={e => setYeniDuyuru({ ...yeniDuyuru, icerik: e.target.value })}
                     required
                   ></textarea>
                 </div>
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={uploading}
@@ -405,13 +405,13 @@ export default function AdminPanel() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <AnimatePresence>
                 {duyurular.map((duyuru, index) => (
-                  <motion.div 
+                  <motion.div
                     layout
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.5 }}
                     transition={{ delay: index * 0.05 }}
-                    key={duyuru.id} 
+                    key={duyuru.id}
                     className="bg-white rounded-xl shadow-sm p-5 flex flex-col justify-between"
                   >
                     <div>
@@ -422,8 +422,8 @@ export default function AdminPanel() {
                       <h4 className="font-bold text-lg text-blue-900 mb-2">{duyuru.baslik}</h4>
                       <p className="text-sm text-gray-600 mb-4 line-clamp-4">{duyuru.icerik}</p>
                     </div>
-                    <button 
-                      onClick={() => duyuruSil(duyuru.id)} 
+                    <button
+                      onClick={() => duyuruSil(duyuru.id)}
                       className="w-full bg-red-50 text-red-600 py-2 rounded-lg text-sm font-bold hover:bg-red-600 hover:text-white transition"
                     >
                       SİL
