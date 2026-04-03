@@ -6,13 +6,14 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { user_name, user_email, user_phone, subject, message } = body;
 
-    const GMAIL_USER = process.env.GMAIL_USER || 'ucuzlerbinayonetimi@gmail.com';
-    const GMAIL_PASS = process.env.GMAIL_PASS || 'sifz fjpj chsp iedo';
+    // Vercel ayarları yerine doğrudan doğrulanmış verileri kullanıyoruz.
+    const GMAIL_USER = 'ucuzlerbinayonetimi@gmail.com';
+    const GMAIL_PASS = 'sifz fjpj chsp iedo';
 
-    // DEBUG: Vercel'in ne okuduğunu görelim (Güvenli)
-    console.log('--- GMAIL CONFIG DEBUG ---');
+    // DEBUG: Bağlantı parametrelerini görelim
+    console.log('--- GMAIL HARDCODED CONFIG ---');
     console.log('USER:', GMAIL_USER);
-    console.log('PASS LENGTH:', GMAIL_PASS ? GMAIL_PASS.length : 0);
+    console.log('PASS LENGTH:', GMAIL_PASS.length);
     console.log('PASS MASKED:', GMAIL_PASS ? GMAIL_PASS.substring(0, 2) + '****' + GMAIL_PASS.slice(-2) : 'MISSING');
 
     if (!GMAIL_USER || !GMAIL_PASS) {
