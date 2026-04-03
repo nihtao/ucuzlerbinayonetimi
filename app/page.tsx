@@ -338,39 +338,29 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
           >
-            {referanslar.slice(0, 8).map((ref) => (
+            {referanslar.slice(0, 8).map((ref, index) => (
               <motion.div 
                 key={ref.id}
                 variants={cardVariants}
                 whileHover="hover"
-                className="group relative bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 flex flex-col h-[320px] cursor-pointer"
+                className="group bg-gray-50 hover:bg-blue-900 rounded-[2rem] p-8 border border-gray-100 hover:border-cyan-500 transition-colors duration-500 flex flex-col items-center justify-center text-center cursor-default shadow-sm hover:shadow-2xl h-[260px]"
               >
-                <div className="absolute inset-0 z-0">
-                  <Image 
-                    src={ref.resim_url} 
-                    alt={ref.baslik} 
-                    fill 
-                    unoptimized
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-                  {/* Koyu Degrade Tampon */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-900/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500"></div>
+                <div className="w-16 h-16 rounded-full bg-white group-hover:bg-blue-800 flex items-center justify-center mb-6 shadow-sm transition-colors duration-500">
+                   <span className="text-2xl font-black text-cyan-600 group-hover:text-cyan-400">
+                     0{index + 1}
+                   </span>
                 </div>
                 
-                {/* Metin İçeriği */}
-                <div className="absolute bottom-0 left-0 w-full p-6 text-left transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
-                  <div className="w-8 h-1 bg-cyan-500 rounded-full mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight mb-2 drop-shadow-md">
-                    {ref.baslik}
-                  </h3>
-                  <div className="flex items-center gap-2 text-cyan-400 font-semibold text-sm">
-                     <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-                     </span>
-                     {ref.aciklama}
-                  </div>
-                </div>
+                <h3 className="text-xl md:text-2xl font-black text-blue-900 group-hover:text-white uppercase tracking-tight mb-3 transition-colors duration-500">
+                  {ref.baslik}
+                </h3>
+                
+                <div className="w-12 h-1 bg-cyan-200 group-hover:bg-cyan-500 rounded-full mb-4 transition-colors duration-500"></div>
+                
+                <p className="text-gray-500 group-hover:text-cyan-50 font-medium text-sm transition-colors duration-500 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:bg-cyan-300"></span>
+                  {ref.aciklama}
+                </p>
               </motion.div>
             ))}
           </motion.div>
