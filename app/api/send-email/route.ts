@@ -9,6 +9,12 @@ export async function POST(request: Request) {
     const GMAIL_USER = process.env.GMAIL_USER || 'ucuzlerbinayonetimi@gmail.com';
     const GMAIL_PASS = process.env.GMAIL_PASS || 'sifz fjpj chsp iedo';
 
+    // DEBUG: Vercel'in ne okuduğunu görelim (Güvenli)
+    console.log('--- GMAIL CONFIG DEBUG ---');
+    console.log('USER:', GMAIL_USER);
+    console.log('PASS LENGTH:', GMAIL_PASS ? GMAIL_PASS.length : 0);
+    console.log('PASS MASKED:', GMAIL_PASS ? GMAIL_PASS.substring(0, 2) + '****' + GMAIL_PASS.slice(-2) : 'MISSING');
+
     if (!GMAIL_USER || !GMAIL_PASS) {
       return NextResponse.json({ success: false, message: "Sunucu ayarları eksik (GMAIL_USER/PASS bulunamadı)" }, { status: 500 });
     }
