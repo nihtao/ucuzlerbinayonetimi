@@ -11,8 +11,11 @@ export default function AdminPanel() {
   const [passwordInput, setPasswordInput] = useState('');
   const [activeTab, setActiveTab] = useState('mesajlar');
 
-  const [mesajlar, setMesajlar] = useState<any[]>([]);
-  const [referanslar, setReferanslar] = useState<any[]>([]);
+  type Mesaj = { id: number; ad_soyad: string; telefon: string; mesaj: string; created_at: string };
+  type Referans = { id: number; baslik: string; aciklama: string; resim_url: string; created_at: string };
+  
+  const [mesajlar, setMesajlar] = useState<Mesaj[]>([]);
+  const [referanslar, setReferanslar] = useState<Referans[]>([]);
   
   const [uploading, setUploading] = useState(false);
   const [yeniReferans, setYeniReferans] = useState({
@@ -22,9 +25,10 @@ export default function AdminPanel() {
   });
 
   // --- GİRİŞ FONKSİYONLARI ---
-  const handleLogin = (e: any) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passwordInput === 'ucuzler123') {
+    const correctPassword = process.env.NEXT_PUBLIC_ADMIN_PASS || 'ucuzler123';
+    if (passwordInput === correctPassword) {
       setIsAuthenticated(true);
       fetchVeriler();
     } else {
@@ -55,13 +59,13 @@ export default function AdminPanel() {
     setReferanslar(data || []);
   };
 
-  const handleDosyaSec = (e: any) => {
+  const handleDosyaSec = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setYeniReferans({ ...yeniReferans, resim: e.target.files[0] });
     }
   };
 
-  const referansEkle = async (e: any) => {
+  const referansEkle = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!yeniReferans.resim || !yeniReferans.baslik) {
       alert("Lütfen başlık ve resim seçiniz.");
@@ -123,8 +127,8 @@ export default function AdminPanel() {
           className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md"
         >
           <div className="flex flex-col items-center mb-6">
-            <Image src="/logo.png" alt="Logo" width={80} height={80} className="mb-4" />
-            <h1 className="text-2xl font-bold text-blue-900 text-center text-blue-900">Yönetici Girişi</h1>
+            <Image src="/binayonetimi.jpeg" alt="Logo" width={80} height={80} className="mb-4 rounded-full" />
+            <h1 className="text-2xl font-bold text-blue-900 text-center">Yönetici Girişi</h1>
           </div>
           <input 
             type="password" 
@@ -152,7 +156,7 @@ export default function AdminPanel() {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
              {/* LOGO BURAYA EKLENDİ */}
-            <Image src="/logo.png" alt="Logo" width={40} height={40} className="bg-white rounded-full p-1" />
+            <Image src="/binayonetimi.jpeg" alt="Logo" width={40} height={40} className="bg-white rounded-full p-1" />
             <h1 className="text-xl font-bold hidden md:block">Üçüzler Yönetim Paneli</h1>
           </div>
           <div className="flex gap-2 md:gap-4">
@@ -226,7 +230,7 @@ export default function AdminPanel() {
               layout
               className="bg-white p-6 rounded-xl shadow-lg mb-8 border-t-4 border-green-500"
             >
-              <h3 className="text-lg font-bold mb-4 text-blue-900 text-blue-900">Yeni Bina Ekle</h3>
+              <h3 className="text-lg font-bold mb-4 text-blue-900">Yeni Bina Ekle</h3>
               <form onSubmit={referansEkle} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input 
                   type="text" 

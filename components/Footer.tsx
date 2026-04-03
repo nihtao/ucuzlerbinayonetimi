@@ -59,17 +59,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#hakkimizda" className="text-blue-100/80 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                <Link href="/#hakkimizda" className="text-blue-100/80 hover:text-cyan-400 transition-colors flex items-center gap-2">
                   <span className="text-cyan-500">›</span> Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link href="#hizmetler" className="text-blue-100/80 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                <Link href="/#hizmetler" className="text-blue-100/80 hover:text-cyan-400 transition-colors flex items-center gap-2">
                   <span className="text-cyan-500">›</span> Hizmetlerimiz
                 </Link>
               </li>
               <li>
-                <Link href="#referanslar" className="text-blue-100/80 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                <Link href="/#referanslar" className="text-blue-100/80 hover:text-cyan-400 transition-colors flex items-center gap-2">
                   <span className="text-cyan-500">›</span> Referanslar
                 </Link>
               </li>
@@ -117,13 +117,13 @@ const Footer = () => {
               Güncel duyurular ve bilgilendirmeler için bizi takip edin.
             </p>
             <div className="flex gap-4">
-              <a href="https://wa.me/905455596212" target="_blank" className="bg-white/5 p-4 rounded-2xl text-green-400 text-xl hover:bg-green-500 hover:text-white transition-all shadow-lg">
+              <a href="https://wa.me/905538873616" target="_blank" className="bg-white/5 p-4 rounded-2xl text-green-400 text-xl hover:bg-green-500 hover:text-white transition-all shadow-lg">
                 <FaWhatsapp />
               </a>
               <a href="https://www.instagram.com/ucuzlerbina_yonetimi/" className="bg-white/5 p-4 rounded-2xl text-pink-500 text-xl hover:bg-pink-500 hover:text-white transition-all shadow-lg">
                 <FaInstagram />
               </a>
-              <a href="tel:+905455596212" className="bg-white/5 p-4 rounded-2xl text-blue-400 text-xl hover:bg-blue-400 hover:text-white transition-all shadow-lg">
+              <a href="tel:+905538873616" className="bg-white/5 p-4 rounded-2xl text-blue-400 text-xl hover:bg-blue-400 hover:text-white transition-all shadow-lg">
                 <FaPhoneAlt />
               </a>
             </div>

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/Layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,12 +15,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
   title: "Üçüzler Bina Yönetimi | Kayseri Profesyonel Site Yönetimi",
   description: "Kayseri'de şeffaf, güvenilir ve bağımsız hesap yönetimi sunan bina yönetim firması.",
 };
-   
 
 export default function RootLayout({
   children,
@@ -31,7 +30,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         <main>{children}</main>
-     
+        <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

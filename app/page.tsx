@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"; // En üstte kalmalı
 
 
@@ -73,7 +72,7 @@ const accordionVariants = {
     marginTop: 16, 
     transition: { 
       duration: 0.4, 
-      ease: "circOut" as any // <-- Buraya 'as any' ekleyerek TypeScript'i susturuyoruz
+      ease: "easeOut" as const
     } 
   }
 };
@@ -96,10 +95,10 @@ export default function Home() {
       
       if (!rData || rData.length === 0) {
         const yedekReferanslar: Referans[] = [
-          { id: 1, baslik: "Modern Yaşam Sitesi", aciklama: "KAYSERİ / TALAS", resim_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
-          { id: 2, baslik: "Gümüş Konaklar", aciklama: "KAYSERİ / KOCASİNAN", resim_url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80" },
-          { id: 3, baslik: "Mavi Şehir Rezidans", aciklama: "KAYSERİ / MELİKGAZİ", resim_url: "https://images.unsplash.com/photo-1460317442991-0ec239f3674f?auto=format&fit=crop&w=800&q=80" },
-          { id: 4, baslik: "Zümrüt Yaşam Evleri", aciklama: "KAYSERİ / MERKEZ", resim_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" }
+          { id: 1, baslik: "Eşal Siteleri", aciklama: "KAYSERİ / BİNA YÖNETİMİ", resim_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
+          { id: 2, baslik: "Toprak Apartmanı", aciklama: "KAYSERİ / BİNA YÖNETİMİ", resim_url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80" },
+          { id: 3, baslik: "Medine Apartmanı", aciklama: "KAYSERİ / BİNA YÖNETİMİ", resim_url: "https://images.unsplash.com/photo-1460317442991-0ec239f3674f?auto=format&fit=crop&w=800&q=80" },
+          { id: 4, baslik: "Algül Apartmanı", aciklama: "KAYSERİ / BİNA YÖNETİMİ", resim_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" }
         ];
         setReferanslar(yedekReferanslar);
       } else {
@@ -287,53 +286,96 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- REFERANSLAR (KAYAN YAZI - SİYAH VARYASYON) --- */}
-<section id="referanslar" className="py-24 bg-white overflow-hidden border-t border-b border-gray-100">
-  <div className="container mx-auto px-4 mb-16 text-center">
-    <motion.span 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      className="text-cyan-500 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
-    >
-      Güvenle Yönetiyoruz
-    </motion.span>
-    <h2 className="text-4xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter">
-      REFERANSLARIMIZ
-    </h2>
-  </div>
+      {/* --- REFERANSLAR (PROFESYONEL KART VARYASYONU) --- */}
+      <section id="referanslar" className="py-24 bg-white overflow-hidden border-t border-b border-gray-100 relative">
+        {/* Arka plan parlama süslemeleri */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-50 rounded-full blur-[100px] opacity-60 -z-10 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-50 rounded-full blur-[100px] opacity-60 -z-10 pointer-events-none"></div>
 
-  <div className="relative flex items-center bg-gray-50 py-10">
-    {/* Yanlardaki gölge efekti akışı daha derin gösterir */}
-    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+        <div className="container mx-auto px-4">
+          {/* Başlık Alanı */}
+          <div className="text-center mb-16">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-cyan-600 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
+            >
+              Güvenle Yönetiyoruz
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter"
+            >
+              REFERANSLARIMIZ
+            </motion.h2>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="h-1.5 w-24 bg-gradient-to-r from-blue-900 to-cyan-500 mx-auto mt-6 rounded-full"
+            ></motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-gray-500 mt-6 max-w-2xl mx-auto italic"
+            >
+              Şehrin önde gelen, markalaşmış yaşam alanlarını güvence altına alıyor ve şeffaf yönetim anlayışıyla değer katıyoruz.
+            </motion.p>
+          </div>
 
-    <motion.div
-      className="flex whitespace-nowrap gap-16"
-      animate={{
-        x: ["0%", "-50%"]
-      }}
-      transition={{
-        duration: 30, // Hız ayarı
-        ease: "linear",
-        repeat: Infinity,
-      }}
-    >
-      {[
-        "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
-      ].concat([
-         "Eşal Siteleri", "Toprak Apartmanı", "Medine Apartmanı", "Algül Apartmanı"
-      ]).map((bina, index) => (
-        <span 
-          key={index} 
-          className="text-4xl md:text-6xl font-black text-blue-900 hover:text-cyan-500 transition-colors duration-300 cursor-default select-none flex items-center gap-16"
-        >
-          {bina}
-          <span className="text-cyan-400 text-4xl">•</span>
-        </span>
-      ))}
-    </motion.div>
-  </div>
-</section>
+          {/* Kart Izgarası */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {referanslar.slice(0, 8).map((ref) => (
+              <motion.div 
+                key={ref.id}
+                variants={cardVariants}
+                whileHover="hover"
+                className="group relative bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 flex flex-col h-[320px] cursor-pointer"
+              >
+                <div className="absolute inset-0 z-0">
+                  <Image 
+                    src={ref.resim_url} 
+                    alt={ref.baslik} 
+                    fill 
+                    unoptimized
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  {/* Koyu Degrade Tampon */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-900/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500"></div>
+                </div>
+                
+                {/* Metin İçeriği */}
+                <div className="absolute bottom-0 left-0 w-full p-6 text-left transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
+                  <div className="w-8 h-1 bg-cyan-500 rounded-full mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight mb-2 drop-shadow-md">
+                    {ref.baslik}
+                  </h3>
+                  <div className="flex items-center gap-2 text-cyan-400 font-semibold text-sm">
+                     <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                     </span>
+                     {ref.aciklama}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* --- YÖNETİM SÜRECİ --- */}
       <section className="py-24 bg-blue-900 text-white relative overflow-hidden text-left">
@@ -425,12 +467,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-4">
                   <FaWhatsapp className="text-green-600 mt-1 shrink-0 text-xl" />
-                  <p className="text-gray-600 font-bold">+90 (545) 559 62 12 </p>
-                  
-                </div>
-                  <div className="flex items-start gap-4">
-                  <FaWhatsapp className="text-green-600 mt-1 shrink-0 text-xl" />
-                <p className="text-gray-600 font-bold">+90 (553) 887 36 16 </p>
+                  <p className="text-gray-600 font-bold">+90 (553) 887 36 16</p>
                 </div>
               </div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -485,52 +522,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
-      <footer className="bg-blue-950 text-white pt-20 pb-10 px-4 relative overflow-hidden text-left">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none"></div>
-        <div className="container mx-auto relative z-10 text-left">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            <div className="space-y-6 text-left">
-              <div className="flex flex-col">
-                <span className="font-black text-3xl tracking-tighter uppercase leading-none">ÜÇÜZLER</span>
-                <span className="text-sm text-cyan-400 font-bold uppercase tracking-[0.2em] mt-1">Bina Yönetimi</span>
-              </div>
-              <p className="text-blue-100/60 text-sm leading-relaxed italic">"Kayseri'de şeffaf, güvenilir ve teknolojik bina yönetiminin tek adresi. Siz huzurla yaşayın, biz profesyonelce yönetelim."</p>
-            </div>
-            <div className="space-y-6 text-left">
-              <h4 className="text-lg font-bold uppercase tracking-widest text-cyan-400 border-b border-white/10 pb-2 inline-block">Hızlı Menü</h4>
-              <ul className="space-y-4 text-sm text-blue-100/80 font-medium">
-                <li><Link href="#anasayfa" onClick={(e) => handleFooterScroll(e, "#anasayfa")} className="hover:text-cyan-400 transition-colors flex items-center gap-2">› Ana Sayfa</Link></li>
-                <li><Link href="#hizmetler" onClick={(e) => handleFooterScroll(e, "#hizmetler")} className="hover:text-cyan-400 transition-colors flex items-center gap-2">› Hizmetlerimiz</Link></li>
-                <li><Link href="#referanslar" onClick={(e) => handleFooterScroll(e, "#referanslar")} className="hover:text-cyan-400 transition-colors flex items-center gap-2">› Referanslar</Link></li>
-              </ul>
-            </div>
-            <div className="space-y-6 text-left">
-              <h4 className="text-lg font-bold uppercase tracking-widest text-cyan-400 border-b border-white/10 pb-2 inline-block">Hizmetlerimiz</h4>
-              <ul className="space-y-4 text-sm text-blue-100/80">
-                <li>✓ Online Aidat Ödeme</li>
-                <li>✓ Şeffaf Muhasebe</li>
-                <li>✓ Periyodik Teknik Bakım</li>
-              </ul>
-            </div>
-            <div className="space-y-6 text-left">
-              <h4 className="text-lg font-bold uppercase tracking-widest text-cyan-400 border-b border-white/10 pb-2 inline-block">Kurumsal</h4>
-              <div className="flex flex-col gap-4 text-sm text-blue-100/80 font-medium">
-                <Link href="/kvkk" className="hover:text-cyan-400 transition-colors">KVKK Metni</Link>
-                <Link href="/iletisim" className="hover:text-cyan-400 transition-colors">İletişim Formu</Link>
-              </div>
-              <div className="flex gap-4 pt-4">
-                <a href="https://www.instagram.com/ucuzlerbina_yonetimi/" target="_blank" className="bg-white/5 p-3 rounded-xl hover:bg-pink-600 transition-all text-xl"><FaInstagram /></a>
-                <a href="https://wa.me/905538873616" target="_blank" className="bg-white/5 p-3 rounded-xl hover:bg-green-600 transition-all text-xl"><FaWhatsapp /></a>
-              </div>
-            </div>
-          </div>
-          <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-            <p className="text-[10px] md:text-xs text-blue-100/40 uppercase tracking-[0.2em] font-bold">© {new Date().getFullYear()} ÜÇÜZLER BİNA YÖNETİMİ. TÜM HAKLARI SAKLIDIR.</p>
-            <p className="text-[10px] md:text-xs text-blue-100/40 uppercase tracking-[0.2em] font-bold italic">KAYSERİ / TÜRKİYE</p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }

@@ -6,7 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa'; // Kurulum:
 const WhatsAppButton = () => {
   return (
     <motion.a
-      href="https://wa.me/+90 553 887 36 16" // Kendi numaranı buraya yaz
+      href="https://wa.me/905538873616"
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}

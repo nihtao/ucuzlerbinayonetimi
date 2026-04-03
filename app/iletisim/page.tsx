@@ -50,9 +50,6 @@ const Iletisim = () => {
     }
   };
 
-  const inputVars = {
-    focus: { scale: 1.02, borderColor: "#06b6d4", transition: { duration: 0.2 } }
-  };
 
   return (
     <section id="iletisim" className="py-20 bg-gray-50 overflow-hidden relative">
@@ -89,54 +86,54 @@ const Iletisim = () => {
             
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div whileFocus="focus" variants={inputVars}>
+                <div>
                   <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Ad Soyad</label>
                   <input 
                     type="text" name="user_name" value={formData.user_name} onChange={handleChange} required 
-                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
+                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-cyan-500 focus:scale-[1.02] outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
                     placeholder="Adınız Soyadınız" 
                   />
-                </motion.div>
+                </div>
 
-                <motion.div whileFocus="focus" variants={inputVars}>
+                <div>
                   <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Telefon</label>
                   <input 
                     type="tel" name="user_phone" value={formData.user_phone} onChange={handleChange} required 
-                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
+                    className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-cyan-500 focus:scale-[1.02] outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
                     placeholder="05XX XXX XX XX" 
                   />
-                </motion.div>
+                </div>
               </div>
 
-              <motion.div whileFocus="focus" variants={inputVars}>
+              <div>
                 <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">E-posta</label>
                 <input 
                   type="email" name="user_email" value={formData.user_email} onChange={handleChange} required 
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
+                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-cyan-500 focus:scale-[1.02] outline-none transition-all text-gray-800 font-medium placeholder-gray-400 shadow-sm" 
                   placeholder="ornek@mail.com" 
                 />
-              </motion.div>
+              </div>
 
-              <motion.div whileFocus="focus" variants={inputVars}>
+              <div>
                 <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Konu</label>
                 <div className="relative">
-                  <select name="subject" value={formData.subject} onChange={handleChange} className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium appearance-none cursor-pointer shadow-sm">
+                  <select name="subject" value={formData.subject} onChange={handleChange} className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-cyan-500 focus:scale-[1.02] outline-none transition-all text-gray-800 font-medium appearance-none cursor-pointer shadow-sm">
                     <option>Yönetim Teklifi Almak İstiyorum</option>
                     <option>Şikayet / Öneri</option>
                     <option>Diğer</option>
                   </select>
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div whileFocus="focus" variants={inputVars}>
+              <div>
                 <label className="text-xs font-bold text-gray-500 uppercase ml-1 mb-1 block">Mesaj</label>
                 <textarea 
                   name="message" value={formData.message} onChange={handleChange} required rows={5} 
-                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:outline-none transition-all text-gray-800 font-medium placeholder-gray-400 resize-none shadow-sm" 
+                  className="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-cyan-500 focus:scale-[1.02] outline-none transition-all text-gray-800 font-medium placeholder-gray-400 resize-none shadow-sm" 
                   placeholder="Mesajınızı buraya yazın..."
                 ></textarea>
-              </motion.div>
+              </div>
 
               <motion.button 
                 whileHover={{ scale: 1.02 }}

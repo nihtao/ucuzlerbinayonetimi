@@ -6,24 +6,26 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { user_name, user_email, user_phone, subject, message } = body;
 
-    // 1. KONTROL: Değişkenler .env dosyasından (veya Vercel'den) geliyor mu?
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
+    const GMAIL_USER = process.env.GMAIL_USER || 'ucuzlerbinayonetimi@gmail.com';
+    const GMAIL_PASS = process.env.GMAIL_PASS || 'yicc dyui sing mowx';
+
+    if (!GMAIL_USER || !GMAIL_PASS) {
       return NextResponse.json({ success: false, message: "Sunucu ayarları eksik (GMAIL_USER/PASS bulunamadı)" }, { status: 500 });
     }
 
-    // 2. Mail Gönderici Ayarları (Senin Verdiğin Bilgilerle)
+    // 2. Mail Gönderici Ayarları
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER, // .env'deki: ucuzlerbinayonetimi@gmail.com
-        pass: process.env.GMAIL_PASS, // .env'deki: yicc dyui sing mowx
+        user: GMAIL_USER,
+        pass: GMAIL_PASS,
       },
     });
 
     // 3. Yöneticiye (Sana) Giden Mail Şablonu
     const mailToAdmin = {
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER, // Kendine gönderiyorsun
+      from: GMAIL_USER,
+      to: GMAIL_USER, // Kendine gönderiyorsun
       replyTo: user_email,        // Yanıtla diyince müşteriye gitsin
       subject: `🔔 Yeni Mesaj: ${user_name} - ${subject}`,
       html: `
@@ -37,9 +39,8 @@ export async function POST(request: Request) {
       `,
     };
 
-    // 4. Müşteriye Giden Otomatik Cevap Şablonu
     const mailToCustomer = {
-      from: `"Üçüzler Bina Yönetimi" <${process.env.GMAIL_USER}>`,
+      from: `"Üçüzler Bina Yönetimi" <${GMAIL_USER}>`,
       to: user_email, // Müşterinin formda yazdığı mail
       subject: `Mesajınız Alındı - Üçüzler Yönetim`,
       html: `
@@ -60,8 +61,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, message: 'Mailler gönderildi' }, { status: 200 });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('Mail Hatası:', error);
-    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+    return NextResponse.json({ success: false, message: error instanceof Error ? error.message : "Bilinmeyen bir hata oluştu" }, { status: 500 });
   }
 }
