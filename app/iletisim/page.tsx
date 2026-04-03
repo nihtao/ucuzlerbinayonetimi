@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Iletisim = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Form verileri
   const [formData, setFormData] = useState({
@@ -45,6 +46,7 @@ const Iletisim = () => {
     } catch (error) {
       console.error(error);
       setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Sunucu hatası oluştu.');
     } finally {
       setLoading(false);
     }
@@ -185,7 +187,7 @@ const Iletisim = () => {
                   <FaExclamationCircle className="text-xl" />
                   <div>
                     <span className="font-bold block">Hata Oluştu</span>
-                    <span className="text-sm">Lütfen internet bağlantınızı kontrol edin.</span>
+                    <span className="text-sm">{errorMessage || 'Lütfen internet bağlantınızı kontrol edin.'}</span>
                   </div>
                 </motion.div>
               )}
