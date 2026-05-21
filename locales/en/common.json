@@ -91,6 +91,168 @@
     "sec1": "1. Data Controller",
     "sec2": "2. Purpose of Processing",
     "sec3": "3. Your Legal Rights",
-    "back": "RETURN TO HOME"
+    "back": "RETURN TO HOME",
+    "intro": "As Ucuzler Building Management, we attach the utmost importance to the security, confidentiality and lawful processing of your personal data in accordance with the Personal Data Protection Law No. 6698 (\"KVKK\").",
+    "sec1Desc": "Ucuzler Building Management, located at Sahabiye Neighborhood Ahmet Pasha Street Kalender Business Center 41/10, acts as the \"Data Controller\" within the scope of KVKK, and your personal data is processed within the limits explained in this Clarification Text.",
+    "sec2Desc": "Your personal data is processed by our company for the purpose of fully performing the management services we provide. Our main processing purposes are:",
+    "sec2Items": [
+      "Managing collection processes for dues and expense advances",
+      "Ensuring the security of buildings, sites and business centers",
+      "Fulfilling legal and financial obligations completely",
+      "Improving service quality for our residents and ensuring communication"
+    ],
+    "sec3Desc": "Pursuant to Article 11 of KVKK, as a data subject, you have the following legal rights:",
+    "sec3Items": [
+      "Learning whether personal data is processed",
+      "If processed, requesting information about it",
+      "Learning the purpose of processing and whether it is used appropriately",
+      "Requesting correction of incomplete or incorrectly processed data",
+      "Requesting deletion of data in accordance with the law",
+      "Objecting to analyses made through automated systems"
+    ]
+  },
+  "home": {
+    "missionTitle": "Our Mission",
+    "missionDesc": "\"Meeting the needs of residents quickly and effectively; managing accounting, cleaning, and technical processes professionally.\"",
+    "visionTitle": "Our Vision",
+    "visionDesc": "\"To be an exemplary brand in building and site management in Turkey with transparent, reliable, and technological solutions.\"",
+    "servicesTitle1": "FULL SERVICE",
+    "servicesTitle2": "MANAGEMENT",
+    "servicesTitle3": "PACKAGE",
+    "servicesDesc": "\"You live peacefully, we manage professionally.\"",
+    "apsAps": "APS",
+    "apsDigital": "Digital Management Center",
+    "apsTitle1": "TRANSPARENT",
+    "apsTitle2": "INDEPENDENT MANAGEMENT",
+    "apsBadge": "First and Only in Kayseri!",
+    "apsDesc1": "We put an end to the 'Pool System' risk in the sector. We create independent accounts for each site without a pool system, directing your dues straight to your site's special account.",
+    "apsDesc2": "Ucuzler Building Management allows you to track everything transparently with the industry-leading Apsiyon infrastructure. Every data point from accounting reports to technical fault tracking is at your fingertips.",
+    "apsDownload": "Download APSIYON App",
+    "refBadge": "The Value of Excellence",
+    "refTitle1": "OUR BIGGEST REFERENCE IS",
+    "refTitle2": "OUR UNCHANGING QUALITY.",
+    "refDesc": "With years of experience, we bring trust and transparency to thousands of households. Regardless of the building name, we leave our signature of quality in every shared living space we touch. Because for us, it's not buildings that matter most, but the families living peacefully inside them.",
+    "stepsTitle1": "PROFESSIONAL MANAGEMENT",
+    "stepsTitle2": "IN 4 STEPS",
+    "steps1Title": "Free Discovery",
+    "steps1Desc": "We inspect your building on-site and identify shortcomings.",
+    "steps2Title": "Planning",
+    "steps2Desc": "We prepare the annual operating project and budget.",
+    "steps3Title": "Digital Transition",
+    "steps3Desc": "We connect your site to the Apsiyon system and bank accounts.",
+    "steps4Title": "Peaceful Life",
+    "steps4Desc": "We begin managing all processes 24/7 transparently.",
+    "newsTitle1": "CURRENT",
+    "newsTitle2": "ANNOUNCEMENTS",
+    "newsDesc": "Latest news and projects from Ucuzler Management.",
+    "newsLink": "See All →",
+    "newsEmpty": "No current announcements available.",
+    "mapTitle1": "UCUZLER",
+    "mapTitle2": "BUILDING MGT",
+    "mapBtn": "GO TO QUOTE FORM",
+    "faqTitle1": "FREQUENTLY ASKED",
+    "faqTitle2": "QUESTIONS",
+    "faqDesc": "Answers to your questions about our building management and transparency processes.",
+    "hizmetler": [
+      {
+        "title": "Fast Online Payment",
+        "short": "Residents can securely pay their dues and other payments 24/7 via our online system.",
+        "details": [
+          "Credit card payment",
+          "Secure SSL infrastructure",
+          "Instant receipt generation"
+        ]
+      },
+      {
+        "title": "Accounting & Dues",
+        "short": "Your financial processes are under full control with income-expense reports and transparent accounting.",
+        "details": [
+          "Detailed monthly reporting",
+          "Auto-debt notification",
+          "Transparent budget management"
+        ]
+      },
+      {
+        "title": "Tech Maintenance",
+        "short": "Plumbing, electrical, and general building repairs are carried out professionally by our expert teams.",
+        "details": [
+          "24/7 tech support",
+          "Planned periodic audits",
+          "Fast fault response"
+        ]
+      },
+      {
+        "title": "Environment & Clean",
+        "short": "Common areas and stairs are cleaned daily according to hygiene standards.",
+        "details": [
+          "Daily block cleaning",
+          "Disinfection processes",
+          "Hygienic material use"
+        ]
+      },
+      {
+        "title": "Landscape & Garden",
+        "short": "Periodic maintenance of green spaces, tree pruning, and landscaping are done meticulously.",
+        "details": [
+          "Lawn mowing",
+          "Seasonal planting",
+          "Auto irrigation control"
+        ]
+      },
+      {
+        "title": "Mobile Staff Services",
+        "short": "We offer professional auditing by making regular visits to your buildings with our mobile teams.",
+        "details": [
+          "Periodic building check",
+          "Fast problem detection",
+          "Mobile reporting support"
+        ]
+      },
+      {
+        "title": "Meter Reading & Bill",
+        "short": "Water, electricity, and gas meters are read flawlessly and billed transparently.",
+        "details": [
+          "Heat cost reading",
+          "Fair cost sharing",
+          "Digital bill report"
+        ]
+      },
+      {
+        "title": "Building Trash Pickup",
+        "short": "Household waste is regularly collected from floors and disposed of hygienically.",
+        "details": [
+          "Daily regular pickup",
+          "Odor prevention",
+          "Waste sorting support"
+        ]
+      },
+      {
+        "title": "Legal Counseling",
+        "short": "We offer professional legal processes and counseling within the scope of the Condominium Law.",
+        "details": [
+          "Law-compliant management",
+          "Execution tracking",
+          "Dispute resolutions"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How are dues determined?",
+        "a": "Dues are calculated transparently based on the building's annual operating project, personnel expenses, common area energy costs, and planned maintenance budgets."
+      },
+      {
+        "q": "Where can I see my debts?",
+        "a": "You can review your current debt status 24/7 via the Apsiyon app and pay securely with a credit card."
+      },
+      {
+        "q": "Who to contact for an emergency?",
+        "a": "By calling our 24/7 support line or creating a 'Fault Report' from the mobile app, you can ensure fast professional intervention."
+      },
+      {
+        "q": "When are reports published?",
+        "a": "Detailed monthly income-expense tables and bank statements are published digitally on the resident panel in the first week of the following month."
+      }
+    ]
   }
 }

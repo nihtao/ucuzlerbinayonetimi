@@ -91,6 +91,168 @@
     "sec1": "1. Veri Sorumlusu",
     "sec2": "2. İşlenme Amacı",
     "sec3": "3. Yasal Haklarınız",
-    "back": "ANA SAYFAYA DÖN"
+    "back": "ANA SAYFAYA DÖN",
+    "intro": "Üçüzler Bina Yönetimi olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") uyarınca kişisel verilerinizin güvenliğine, gizliliğine ve hukuka uygun şekilde işlenmesine en üst düzeyde önem veriyoruz.",
+    "sec1Desc": "Sahabiye Mahallesi Ahmet Paşa Caddesi Kalender İş Merkezi 41/10 adresinde mukim Üçüzler Bina Yönetimi, KVKK kapsamında \"Veri Sorumlusu\" sıfatıyla hareket etmekte olup, kişisel verileriniz işbu Aydınlatma Metni'nde açıklanan sınırlar çerçevesinde işlenmektedir.",
+    "sec2Desc": "Kişisel verileriniz, şirketimiz tarafından sunulan yönetim hizmetlerinin eksiksiz bir şekilde ifa edilebilmesi amacıyla işlenmektedir. Başlıca işleme amaçlarımız şunlardır:",
+    "sec2Items": [
+      "Aidat ve gider avansı tahsilat süreçlerinin yürütülmesi",
+      "Bina, site ve iş merkezi güvenliğinin sağlanması",
+      "Hukuki ve mali yükümlülüklerin eksiksiz yerine getirilmesi",
+      "Sakinlerimize yönelik hizmet kalitesinin artırılması ve iletişimin sağlanması"
+    ],
+    "sec3Desc": "KVKK'nın 11. maddesi uyarınca, veri sahibi olarak aşağıdaki yasal haklara sahipsiniz:",
+    "sec3Items": [
+      "Kişisel veri işlenip işlenmediğini öğrenme",
+      "İşlenmişse buna ilişkin bilgi talep etme",
+      "İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme",
+      "Eksik veya yanlış işlenen verilerin düzeltilmesini isteme",
+      "Kanuna uygun olarak verilerin silinmesini talep etme",
+      "Otomatik sistemler ile yapılan analizlere itiraz etme"
+    ]
+  },
+  "home": {
+    "missionTitle": "Misyonumuz",
+    "missionDesc": "\"Site sakinlerinin ihtiyaçlarını hızlı ve etkili şekilde karşılamak; muhasebe, temizlik ve teknik süreçleri profesyonelce yönetmek.\"",
+    "visionTitle": "Vizyonumuz",
+    "visionDesc": "\"Türkiye’de bina ve site yönetimi alanında şeffaf, güvenilir ve teknolojik çözümlerle örnek bir marka olmak.\"",
+    "servicesTitle1": "YÖNETİMDE",
+    "servicesTitle2": "TAM HİZMET",
+    "servicesTitle3": "PAKETİ",
+    "servicesDesc": "\"Siz huzurla yaşayın, biz profesyonelce yönetelim.\"",
+    "apsAps": "APS",
+    "apsDigital": "Dijital Yönetim Merkezi",
+    "apsTitle1": "ŞEFFAF",
+    "apsTitle2": "BAĞIMSIZ YÖNETİM",
+    "apsBadge": "Kayseri'de İlk ve Tek!",
+    "apsDesc1": "Sektördeki \"Havuz Sistemi\" riskine son veriyoruz. Havuz sistemi olmadan her site için bağımsız hesap tanımlıyor, aidatlarınızı doğrudan kendi sitenizin özel hesabına yönlendiriyoruz.",
+    "apsDesc2": "Üçüzler Bina Yönetimi, sektör lideri Apsiyon altyapısı ile her şeyi şeffafça takip etmenizi sağlar. Muhasebe raporlarından teknik arıza takibine kadar her veri parmaklarınızın ucunda.",
+    "apsDownload": "APSİYON Uygulamasını İndirin",
+    "refBadge": "Mükemmelliyetin Karşılığı",
+    "refTitle1": "EN BÜYÜK REFERANSIMIZ,",
+    "refTitle2": "DEĞİŞMEYEN KALİTEMİZDİR.",
+    "refDesc": "Yılların getirdiği tecrübe ile binlerce haneye güven ve şeffaflık taşıyoruz. Bina isminden bağımsız olarak, dokunduğumuz her ortak yaşam alanında kendi kalite imzamızı bırakıyoruz. Çünkü bizim için asıl önemli olan binalar değil, içinde huzurla yaşayan ailelerdir.",
+    "stepsTitle1": "4 ADIMDA",
+    "stepsTitle2": "PROFESYONEL YÖNETİM",
+    "steps1Title": "Ücretsiz Keşif",
+    "steps1Desc": "Binanızı yerinde inceliyor, eksikleri tespit ediyoruz.",
+    "steps2Title": "Planlama",
+    "steps2Desc": "Yıllık işletme projesini ve bütçeyi hazırlıyoruz.",
+    "steps3Title": "Dijital Geçiş",
+    "steps3Desc": "Sitenizi Apsiyon sistemine ve banka hesaplarına bağlıyoruz.",
+    "steps4Title": "Huzurlu Yaşam",
+    "steps4Desc": "Tüm süreçleri 7/24 şeffaf şekilde yönetmeye başlıyoruz.",
+    "newsTitle1": "GÜNCEL",
+    "newsTitle2": "DUYURULAR",
+    "newsDesc": "Üçüzler Yönetim'den son haberler ve projeler.",
+    "newsLink": "Tümünü Gör →",
+    "newsEmpty": "Henüz güncel bir duyuru bulunmamaktadır.",
+    "mapTitle1": "ÜÇÜZLER",
+    "mapTitle2": "BİNA YÖNETİMİ",
+    "mapBtn": "TEKLİF ALMA FORMUNA GİT",
+    "faqTitle1": "SIKÇA SORULAN",
+    "faqTitle2": "SORULAR",
+    "faqDesc": "Bina yönetimi ve şeffaflık süreçlerimiz hakkında aklınıza takılan soruların yanıtları.",
+    "hizmetler": [
+      {
+        "title": "Online Hızlı Ödeme",
+        "short": "Site sakinleri, aidat ve diğer ödemelerini güvenli online sistemimiz üzerinden 7/24 gerçekleştirebilirler.",
+        "details": [
+          "Kredi kartı ile ödeme",
+          "Güvenli SSL altyapısı",
+          "Anlık makbuz üretimi"
+        ]
+      },
+      {
+        "title": "Muhasebe & Aidat",
+        "short": "Gelir-gider raporları ve şeffaf muhasebe yönetimi ile finansal süreçleriniz tam kontrol altında.",
+        "details": [
+          "Aylık detaylı raporlama",
+          "Otomatik borç bilgilendirme",
+          "Şeffaf bütçe yönetimi"
+        ]
+      },
+      {
+        "title": "Teknik Bakım & Onarım",
+        "short": "Tesisat, elektrik ve genel bina onarımları uzman ekiplerimiz tarafından profesyonelce yürütülür.",
+        "details": [
+          "7/24 teknik destek",
+          "Planlı periyodik denetimler",
+          "Hızlı arıza müdahalesi"
+        ]
+      },
+      {
+        "title": "Çevre & Temizlik",
+        "short": "Ortak alanlar ve merdivenler, hijyen standartlarına uygun günlük temizlik planına göre temizlenir.",
+        "details": [
+          "Günlük blok temizliği",
+          "Dezenfeksiyon işlemleri",
+          "Hijyenik malzeme kullanımı"
+        ]
+      },
+      {
+        "title": "Peyzaj & Bahçe Bakımı",
+        "short": "Yeşil alanların periyodik bakımı, ağaç budama ve peyzaj düzenlemeleri titizlikle gerçekleştirilir.",
+        "details": [
+          "Çim biçme ve ilaçlama",
+          "Mevsimlik çiçeklendirme",
+          "Otomatik sulama kontrolü"
+        ]
+      },
+      {
+        "title": "Mobil Görevli Hizmetleri",
+        "short": "Gezici ekiplerimizle binalarınıza düzenli ziyaretler gerçekleştirerek profesyonel denetim sunuyoruz.",
+        "details": [
+          "Periyodik bina kontrolü",
+          "Hızlı sorun tespiti",
+          "Mobil raporlama desteği"
+        ]
+      },
+      {
+        "title": "Sayaç Okuma & Fatura",
+        "short": "Su, elektrik ve doğalgaz sayaçları hatasız okunarak şeffaf bir şekilde faturalandırılır.",
+        "details": [
+          "Isı pay ölçer okuma",
+          "Adil gider paylaşımı",
+          "Dijital fatura raporu"
+        ]
+      },
+      {
+        "title": "Bina Çöp Toplama",
+        "short": "Evsel atıklar, belirlenen saatlerde düzenli olarak katlardan toplanır ve hijyenik olarak bertaraf edilir.",
+        "details": [
+          "Günlük düzenli toplama",
+          "Koku önleyici tedbirler",
+          "Atık ayrıştırma desteği"
+        ]
+      },
+      {
+        "title": "Hukuki Danışmanlık",
+        "short": "Kat Mülkiyeti Kanunu çerçevesinde profesyonel hukuki süreç ve danışmanlık hizmeti sunuyoruz.",
+        "details": [
+          "KMK uyumlu yönetim",
+          "İcra süreç takibi",
+          "Uyuşmazlık çözümleri"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Aidatlar nasıl belirleniyor?",
+        "a": "Aidatlar, Kat Mülkiyeti Kanunu çerçevesinde binanın yıllık işletme projesi, personel giderleri, ortak alan enerji maliyetleri ve planlı bakım bütçeleri doğrultusunda şeffaf bir şekilde hesaplanır."
+      },
+      {
+        "q": "Borç ve ödemelerimi nereden görebilirim?",
+        "a": "Apsiyon mobil uygulaması üzerinden 7/24 güncel borç durumunuzu inceleyebilir, kredi kartı ile güvenli ve hızlı ödeme yapabilirsiniz."
+      },
+      {
+        "q": "Acil bir arıza durumunda kime ulaşmalıyım?",
+        "a": "7/24 hizmet veren teknik destek hattımızı arayarak veya mobil uygulamadan 'Arıza Bildirimi' oluşturarak profesyonel ekiplerimizin binanıza en kısa sürede müdahale etmesini sağlayabilirsiniz."
+      },
+      {
+        "q": "Gelir-Gider raporları ne zaman yayınlanıyor?",
+        "a": "Her aya ait detaylı gelir-gider tabloları ve banka ekstreleri bir sonraki ayın ilk haftasında sakin paneli ve mobil uygulamada dijital olarak ilan edilir."
+      }
+    ]
   }
 }

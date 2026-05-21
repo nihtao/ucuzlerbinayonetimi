@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/utils/supabase';
+import { useTranslations } from 'next-intl';
 import Hero from '@/components/Hero';
 import Image from 'next/image';
 import About from '@/components/About';
@@ -78,6 +79,7 @@ const accordionVariants = {
 };
 
 export default function Home() {
+  const t = useTranslations("home");
   const [referanslar, setReferanslar] = useState<Referans[]>([]);
   const [duyurular, setDuyurular] = useState<Duyuru[]>([]);
   const [activeService, setActiveService] = useState<number | null>(null);
@@ -123,24 +125,15 @@ export default function Home() {
     }
   };
 
-  const sssVerileri = [
-    { q: "Aidatlar nasıl belirleniyor?", a: "Aidatlar, Kat Mülkiyeti Kanunu çerçevesinde binanın yıllık işletme projesi, personel giderleri, ortak alan enerji maliyetleri ve planlı bakım bütçeleri doğrultusunda şeffaf bir şekilde hesaplanır." },
-    { q: "Borç ve ödemelerimi nereden görebilirim?", a: "Apsiyon mobil uygulaması üzerinden 7/24 güncel borç durumunuzu inceleyebilir, kredi kartı ile güvenli ve hızlı ödeme yapabilirsiniz." },
-    { q: "Acil bir arıza durumunda kime ulaşmalıyım?", a: "7/24 hizmet veren teknik destek hattımızı arayarak veya mobil uygulamadan 'Arıza Bildirimi' oluşturarak profesyonel ekiplerimizin binanıza en kısa sürede müdahale etmesini sağlayabilirsiniz." },
-    { q: "Gelir-Gider raporları ne zaman yayınlanıyor?", a: "Her aya ait detaylı gelir-gider tabloları ve banka ekstreleri bir sonraki ayın ilk haftasında sakin paneli ve mobil uygulamada dijital olarak ilan edilir." }
-  ];
+  const sssVerileri = t.raw("faqs") as { q: string, a: string }[];
 
-  const hizmetDetaylari = [
-    { id: 1, title: "Online Hızlı Ödeme", icon: <FaCreditCard />, short: "Site sakinleri, aidat ve diğer ödemelerini güvenli online sistemimiz üzerinden 7/24 gerçekleştirebilirler.", details: ["Kredi kartı ile ödeme", "Güvenli SSL altyapısı", "Anlık makbuz üretimi"] },
-    { id: 2, title: "Muhasebe & Aidat", icon: <FaChartLine />, short: "Gelir-gider raporları ve şeffaf muhasebe yönetimi ile finansal süreçleriniz tam kontrol altında.", details: ["Aylık detaylı raporlama", "Otomatik borç bilgilendirme", "Şeffaf bütçe yönetimi"] },
-    { id: 3, title: "Teknik Bakım & Onarım", icon: <FaTools />, short: "Tesisat, elektrik ve genel bina onarımları uzman ekiplerimiz tarafından profesyonelce yürütülür.", details: ["7/24 teknik destek", "Planlı periyodik denetimler", "Hızlı arıza müdahalesi"] },
-    { id: 4, title: "Çevre & Temizlik", icon: <FaBroom />, short: "Ortak alanlar ve merdivenler, hijyen standartlarına uygun günlük temizlik planına göre temizlenir.", details: ["Günlük blok temizliği", "Dezenfeksiyon işlemleri", "Hijyenik malzeme kullanımı"] },
-    { id: 5, title: "Peyzaj & Bahçe Bakımı", icon: <FaLeaf />, short: "Yeşil alanların periyodik bakımı, ağaç budama ve peyzaj düzenlemeleri titizlikle gerçekleştirilir.", details: ["Çim biçme ve ilaçlama", "Mevsimlik çiçeklendirme", "Otomatik sulama kontrolü"] },
-    { id: 6, title: "Mobil Görevli Hizmetleri", icon: <FaUserShield />, short: "Gezici ekiplerimizle binalarınıza düzenli ziyaretler gerçekleştirerek profesyonel denetim sunuyoruz.", details: ["Periyodik bina kontrolü", "Hızlı sorun tespiti", "Mobil raporlama desteği"] },
-    { id: 7, title: "Sayaç Okuma & Fatura", icon: <FaWater />, short: "Su, elektrik ve doğalgaz sayaçları hatasız okunarak şeffaf bir şekilde faturalandırılır.", details: ["Isı pay ölçer okuma", "Adil gider paylaşımı", "Dijital fatura raporu"] },
-    { id: 8, title: "Bina Çöp Toplama", icon: <FaTrash />, short: "Evsel atıklar, belirlenen saatlerde düzenli olarak katlardan toplanır ve hijyenik olarak bertaraf edilir.", details: ["Günlük düzenli toplama", "Koku önleyici tedbirler", "Atık ayrıştırma desteği"] },
-    { id: 9, title: "Hukuki Danışmanlık", icon: <FaGavel />, short: "Kat Mülkiyeti Kanunu çerçevesinde profesyonel hukuki süreç ve danışmanlık hizmeti sunuyoruz.", details: ["KMK uyumlu yönetim", "İcra süreç takibi", "Uyuşmazlık çözümleri"] }
-  ];
+  const icons = [<FaCreditCard key={1} />, <FaChartLine key={2} />, <FaTools key={3} />, <FaBroom key={4} />, <FaLeaf key={5} />, <FaUserShield key={6} />, <FaWater key={7} />, <FaTrash key={8} />, <FaGavel key={9} />];
+  const translatedHizmetler = t.raw("hizmetler") as { title: string, short: string, details: string[] }[];
+  const hizmetDetaylari = translatedHizmetler.map((item, i) => ({
+    id: i + 1,
+    icon: icons[i],
+    ...item
+  }));
 
   return (
     <main id="anasayfa" className="min-h-screen bg-gray-50 dark:bg-[#020617] overflow-x-hidden relative font-sans text-gray-900 dark:text-gray-100 leading-relaxed transition-colors duration-300">
@@ -159,12 +152,12 @@ export default function Home() {
         {/* w-full → mobilde tam genişlik; max-w-7xl → masaüstünde 80rem sınırı; mx-auto → yatayda ortala; px-4 → mobil kenar boşluğu */}
         <div className="w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
           <motion.div variants={sectionVariants} className="lg:col-span-6 p-8 md:p-10 lg:p-12 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 border-l-[12px] border-l-cyan-600 dark:border-l-cyan-500 shadow-xl dark:shadow-none flex flex-col justify-center">
-            <h2 className="text-2xl md:text-3xl font-black text-blue-950 dark:text-white mb-4 uppercase tracking-tighter">Misyonumuz</h2>
-            <p className="text-gray-700 dark:text-gray-300 italic text-lg leading-relaxed">"Site sakinlerinin ihtiyaçlarını hızlı ve etkili şekilde karşılamak; muhasebe, temizlik ve teknik süreçleri profesyonelce yönetmek."</p>
+            <h2 className="text-2xl md:text-3xl font-black text-blue-950 dark:text-white mb-4 uppercase tracking-tighter">{t("missionTitle")}</h2>
+            <p className="text-gray-700 dark:text-gray-300 italic text-lg leading-relaxed">{t("missionDesc")}</p>
           </motion.div>
           <motion.div variants={sectionVariants} className="lg:col-span-6 p-8 md:p-10 lg:p-12 bg-blue-950 dark:bg-cyan-900/20 text-white border-l-[12px] border-blue-500 dark:border-cyan-400 shadow-2xl dark:shadow-none flex flex-col justify-center">
-            <h2 className="text-2xl md:text-3xl font-black text-cyan-400 mb-4 uppercase tracking-tighter">Vizyonumuz</h2>
-            <p className="text-blue-100 dark:text-cyan-50 text-lg leading-relaxed">"Türkiye’de bina ve site yönetimi alanında şeffaf, güvenilir ve teknolojik çözümlerle örnek bir marka olmak."</p>
+            <h2 className="text-2xl md:text-3xl font-black text-cyan-400 mb-4 uppercase tracking-tighter">{t("visionTitle")}</h2>
+            <p className="text-blue-100 dark:text-cyan-50 text-lg leading-relaxed">{t("visionDesc")}</p>
           </motion.div>
         </div>
       </motion.section>
@@ -175,9 +168,9 @@ export default function Home() {
         {/* İç div ile max-w sınırı uygulanır; section'ın arkaplan rengi tam genişlik kalır */}
         <div className="w-full max-w-7xl mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-blue-900 dark:text-white uppercase tracking-tighter">YÖNETİMDE <span className="text-cyan-600 dark:text-cyan-400">TAM HİZMET</span> PAKETİ</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-blue-900 dark:text-white uppercase tracking-tighter">{t("servicesTitle1")} <span className="text-cyan-600 dark:text-cyan-400">{t("servicesTitle2")}</span> {t("servicesTitle3")}</h2>
             {/* text-sm mobilde, md:text-lg tablet+ → Kural 4 */}
-            <p className="text-gray-500 dark:text-gray-400 mt-4 text-sm md:text-lg">"Siz huzurla yaşayın, biz profesyonelce yönetelim."</p>
+            <p className="text-gray-500 dark:text-gray-400 mt-4 text-sm md:text-lg">{t("servicesDesc")}</p>
           </motion.div>
 
           <motion.div
@@ -254,29 +247,29 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 relative bg-blue-900 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center p-2 shadow-lg dark:border dark:border-cyan-500/20">
-                    <span className="text-white dark:text-cyan-400 font-black text-xs uppercase">APS</span>
+                    <span className="text-white dark:text-cyan-400 font-black text-xs uppercase">{t("apsAps")}</span>
                   </div>
-                  <span className="text-cyan-600 dark:text-cyan-400 font-bold uppercase tracking-[0.3em] text-sm">Dijital Yönetim Merkezi</span>
+                  <span className="text-cyan-600 dark:text-cyan-400 font-bold uppercase tracking-[0.3em] text-sm">{t("apsDigital")}</span>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black text-blue-900 dark:text-white uppercase tracking-tighter leading-tight mb-6">
-                  ŞEFFAF <br /><span className="text-cyan-600 dark:text-cyan-400">BAĞIMSIZ YÖNETİM</span>
+                  {t("apsTitle1")} <br /><span className="text-cyan-600 dark:text-cyan-400">{t("apsTitle2")}</span>
                 </h2>
 
                 <div className="bg-blue-50 dark:bg-cyan-950/20 border-l-4 border-blue-900 dark:border-cyan-500 p-6 rounded-2xl mb-8 shadow-sm">
                   <h4 className="flex items-center gap-2 text-blue-900 dark:text-cyan-300 font-black uppercase text-sm mb-2 italic">
-                    <FaShieldAlt className="text-cyan-600 dark:text-cyan-400" /> Kayseri'de İlk ve Tek!
+                    <FaShieldAlt className="text-cyan-600 dark:text-cyan-400" /> {t("apsBadge")}
                   </h4>
                   <p className="text-gray-700 dark:text-gray-300 font-bold leading-relaxed">
-                    Sektördeki "Havuz Sistemi" riskine son veriyoruz. <span className="text-blue-900 dark:text-cyan-400 font-black underline">Havuz sistemi olmadan</span> her site için bağımsız hesap tanımlıyor, aidatlarınızı doğrudan kendi sitenizin özel hesabına yönlendiriyoruz.
+                    {t("apsDesc1")}
                   </p>
                 </div>
 
                 <p className="text-gray-500 dark:text-gray-400 text-lg mb-8 leading-relaxed font-medium">
-                  Üçüzler Bina Yönetimi, sektör lideri <strong>Apsiyon</strong> altyapısı ile her şeyi şeffafça takip etmenizi sağlar. Muhasebe raporlarından teknik arıza takibine kadar her veri parmaklarınızın ucunda.
+                  {t("apsDesc2")}
                 </p>
 
                 <div className="flex flex-col gap-4">
-                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest pl-1 italic">APSİYON Uygulamasını İndirin</p>
+                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest pl-1 italic">{t("apsDownload")}</p>
                   <div className="flex flex-wrap gap-6 items-center">
                     <a href="https://apps.apple.com/tr/app/apsiyon/id742594884?l=tr" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
                       <Image src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" width={160} height={50} className="h-12 w-auto" />
@@ -310,20 +303,19 @@ export default function Home() {
             className="text-center max-w-4xl mx-auto"
           >
             <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs md:text-sm mb-6 block drop-shadow-md">
-              Mükemmelliyetin Karşılığı
+              {t("refBadge")}
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-tight mb-8">
-              EN BÜYÜK REFERANSIMIZ, <br className="hidden md:block" />
+              {t("refTitle1")} <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-200">
-                DEĞİŞMEYEN KALİTEMİZDİR.
+                {t("refTitle2")}
               </span>
             </h2>
 
             <div className="w-24 h-1 bg-cyan-500 mx-auto rounded-full mb-8 shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
 
             <p className="text-blue-100/90 text-lg md:text-xl md:leading-relaxed font-light">
-              Yılların getirdiği tecrübe ile binlerce haneye güven ve şeffaflık taşıyoruz. Bina isminden bağımsız olarak,
-              dokunduğumuz her ortak yaşam alanında kendi kalite imzamızı bırakıyoruz. Çünkü bizim için asıl önemli olan binalar değil, içinde huzurla yaşayan ailelerdir.
+              {t("refDesc")}
             </p>
           </motion.div>
         </div>
@@ -334,7 +326,7 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
-              4 ADIMDA <span className="text-cyan-400">PROFESYONEL YÖNETİM</span>
+              {t("stepsTitle1")} <span className="text-cyan-400">{t("stepsTitle2")}</span>
             </h2>
           </div>
 
@@ -342,10 +334,10 @@ export default function Home() {
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2 z-0"></div>
 
             {[
-              { step: "01", title: "Ücretsiz Keşif", desc: "Binanızı yerinde inceliyor, eksikleri tespit ediyoruz." },
-              { step: "02", title: "Planlama", desc: "Yıllık işletme projesini ve bütçeyi hazırlıyoruz." },
-              { step: "03", title: "Dijital Geçiş", desc: "Sitenizi Apsiyon sistemine ve banka hesaplarına bağlıyoruz." },
-              { step: "04", title: "Huzurlu Yaşam", desc: "Tüm süreçleri 7/24 şeffaf şekilde yönetmeye başlıyoruz." }
+              { step: "01", title: t("steps1Title"), desc: t("steps1Desc") },
+              { step: "02", title: t("steps2Title"), desc: t("steps2Desc") },
+              { step: "03", title: t("steps3Title"), desc: t("steps3Desc") },
+              { step: "04", title: t("steps4Title"), desc: t("steps4Desc") }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -369,11 +361,11 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <div className="text-left">
-              <h2 className="text-3xl font-black text-blue-900 dark:text-white uppercase tracking-tighter">GÜNCEL <span className="text-cyan-600 dark:text-cyan-400">DUYURULAR</span></h2>
-              <p className="text-gray-500 dark:text-gray-400 mt-2">Üçüzler Yönetim'den son haberler ve projeler.</p>
+              <h2 className="text-3xl font-black text-blue-900 dark:text-white uppercase tracking-tighter">{t("newsTitle1")} <span className="text-cyan-600 dark:text-cyan-400">{t("newsTitle2")}</span></h2>
+              <p className="text-gray-500 dark:text-gray-400 mt-2">{t("newsDesc")}</p>
             </div>
             <Link href="/iletisim" className="text-blue-900 dark:text-cyan-400 font-black uppercase text-sm tracking-widest border-b-2 border-cyan-500 pb-1 hover:text-cyan-600 dark:hover:text-cyan-300 transition-all">
-              Tümünü Gör →
+              {t("newsLink")}
             </Link>
           </div>
 
@@ -393,7 +385,7 @@ export default function Home() {
                 </div>
               </div>
             )) : (
-              <p className="text-gray-400 dark:text-gray-500 italic col-span-2 text-center">Henüz güncel bir duyuru bulunmamaktadır.</p>
+              <p className="text-gray-400 dark:text-gray-500 italic col-span-2 text-center">{t("newsEmpty")}</p>
             )}
           </div>
         </div>
@@ -409,8 +401,8 @@ export default function Home() {
             </div>
             <div className="lg:col-span-4 p-6 md:p-12 flex flex-col justify-center bg-gray-50 dark:bg-transparent text-left">
               <div className="mb-8">
-                <h3 className="text-3xl font-black text-blue-900 dark:text-white uppercase tracking-tighter leading-none">ÜÇÜZLER</h3>
-                <p className="text-sm text-cyan-600 dark:text-cyan-400 font-bold uppercase tracking-widest mt-1">BİNA YÖNETİMİ</p>
+                <h3 className="text-3xl font-black text-blue-900 dark:text-white uppercase tracking-tighter leading-none">{t("mapTitle1")}</h3>
+                <p className="text-sm text-cyan-600 dark:text-cyan-400 font-bold uppercase tracking-widest mt-1">{t("mapTitle2")}</p>
               </div>
               <div className="space-y-8 mb-10 text-left">
                 <div className="flex items-start gap-4">
@@ -424,7 +416,7 @@ export default function Home() {
               </div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/iletisim" className="group bg-blue-900 dark:bg-cyan-600 text-white font-bold py-5 rounded-3xl shadow-xl dark:shadow-cyan-900/20 flex items-center justify-center gap-3 uppercase tracking-widest text-sm transition-all hover:bg-blue-800 dark:hover:bg-cyan-500">
-                  TEKLİF ALMA FORMUNA GİT <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  {t("mapBtn")} <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                 </Link>
               </motion.div>
             </div>
@@ -437,8 +429,8 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="lg:col-span-4 text-left">
-              <h2 className="text-3xl md:text-5xl font-black text-blue-900 dark:text-white uppercase tracking-tighter">SIKÇA SORULAN <span className="text-cyan-600 dark:text-cyan-400">SORULAR</span></h2>
-              <p className="text-gray-500 dark:text-gray-400 mt-4 italic font-medium leading-relaxed">Bina yönetimi ve şeffaflık süreçlerimiz hakkında aklınıza takılan soruların yanıtları.</p>
+              <h2 className="text-3xl md:text-5xl font-black text-blue-900 dark:text-white uppercase tracking-tighter">{t("faqTitle1")} <span className="text-cyan-600 dark:text-cyan-400">{t("faqTitle2")}</span></h2>
+              <p className="text-gray-500 dark:text-gray-400 mt-4 italic font-medium leading-relaxed">{t("faqDesc")}</p>
             </motion.div>
             
             <div className="lg:col-span-8 space-y-4">

@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaShieldAlt, FaArrowLeft, FaFileSignature, FaUserSecret, FaGavel, FaRegCheckCircle, FaBuilding } from 'react-icons/fa';
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function KvkkPage() {
   const t = useTranslations("kvkkPage");
+  const locale = useLocale();
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-[#020617] pb-32 transition-colors duration-300">
       {/* ÜST HEADER - Güçlü Kurumsal Görünüm */}
@@ -79,7 +80,7 @@ export default function KvkkPage() {
 
               <div className="mt-12 pt-6 border-t border-gray-100 dark:border-white/10">
                 <Link 
-                  href="/" 
+                  href={`/${locale}`} 
                   className="flex items-center justify-center gap-2 w-full py-4 bg-blue-950 dark:bg-white text-white dark:text-blue-950 font-black rounded-xl hover:bg-cyan-600 dark:hover:bg-cyan-400 transition-colors uppercase tracking-widest text-xs shadow-lg dark:shadow-none"
                 >
                   <FaArrowLeft /> {t("back")}
@@ -98,7 +99,7 @@ export default function KvkkPage() {
               className="bg-white dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-3xl p-8 md:p-10 shadow-xl dark:shadow-none transition-colors duration-300"
             >
               <p className="text-xl font-medium text-gray-800 dark:text-gray-200 leading-relaxed">
-                Üçüzler Bina Yönetimi olarak, <strong className="text-cyan-600 dark:text-cyan-400">6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”)</strong> uyarınca kişisel verilerinizin güvenliğine, gizliliğine ve hukuka uygun şekilde işlenmesine en üst düzeyde önem veriyoruz.
+                {t("intro")}
               </p>
             </motion.div>
 
@@ -117,7 +118,7 @@ export default function KvkkPage() {
                 <h2 className="text-2xl font-black text-blue-950 dark:text-white uppercase tracking-tighter m-0">{t("sec1")}</h2>
               </div>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                Sahabiye Mahallesi Ahmet Paşa Caddesi Kalender İş Merkezi 41/10 adresinde mukim <strong className="text-cyan-600 dark:text-cyan-400">Üçüzler Bina Yönetimi</strong>, KVKK kapsamında "Veri Sorumlusu" sıfatıyla hareket etmekte olup, kişisel verileriniz işbu Aydınlatma Metni'nde açıklanan sınırlar çerçevesinde işlenmektedir.
+                {t("sec1Desc")}
               </p>
             </motion.div>
 
@@ -136,15 +137,10 @@ export default function KvkkPage() {
                 <h2 className="text-2xl font-black text-blue-950 dark:text-white uppercase tracking-tighter m-0">{t("sec2")}</h2>
               </div>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-6">
-                Kişisel verileriniz, şirketimiz tarafından sunulan yönetim hizmetlerinin eksiksiz bir şekilde ifa edilebilmesi amacıyla işlenmektedir. Başlıca işleme amaçlarımız şunlardır:
+                {t("sec2Desc")}
               </p>
               <ul className="space-y-4">
-                {[
-                  "Aidat ve gider avansı tahsilat süreçlerinin yürütülmesi",
-                  "Bina, site ve iş merkezi güvenliğinin sağlanması",
-                  "Hukuki ve mali yükümlülüklerin eksiksiz yerine getirilmesi",
-                  "Sakinlerimize yönelik hizmet kalitesinin artırılması ve iletişimin sağlanması"
-                ].map((item, index) => (
+                {(t.raw("sec2Items") as string[]).map((item, index) => (
                   <li key={index} className="flex items-start gap-4 p-5 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
                     <FaRegCheckCircle className="text-cyan-600 dark:text-cyan-400 mt-1 shrink-0 text-2xl" />
                     <span className="text-gray-800 dark:text-gray-200 font-medium text-lg">{item}</span>
@@ -168,17 +164,10 @@ export default function KvkkPage() {
                 <h2 className="text-2xl font-black text-blue-950 dark:text-white uppercase tracking-tighter m-0">{t("sec3")}</h2>
               </div>
               <p className="text-gray-700 dark:text-blue-100 leading-relaxed text-lg mb-8">
-                KVKK’nın 11. maddesi uyarınca, veri sahibi olarak aşağıdaki yasal haklara sahipsiniz:
+                {t("sec3Desc")}
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  "Kişisel veri işlenip işlenmediğini öğrenme",
-                  "İşlenmişse buna ilişkin bilgi talep etme",
-                  "İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme",
-                  "Eksik veya yanlış işlenen verilerin düzeltilmesini isteme",
-                  "Kanuna uygun olarak verilerin silinmesini talep etme",
-                  "Otomatik sistemler ile yapılan analizlere itiraz etme"
-                ].map((item, index) => (
+                {(t.raw("sec3Items") as string[]).map((item, index) => (
                   <li key={index} className="flex items-center gap-4 p-5 bg-white dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/5 backdrop-blur-sm hover:shadow-md dark:hover:bg-white/10 transition-all">
                     <span className="w-2.5 h-2.5 rounded-full bg-cyan-600 dark:bg-cyan-400 shrink-0"></span>
                     <span className="text-sm md:text-base font-medium text-gray-800 dark:text-blue-50">{item}</span>
@@ -190,7 +179,7 @@ export default function KvkkPage() {
             {/* Mobil için Ana Sayfa Butonu */}
             <div className="lg:hidden mt-12 pt-8 flex justify-center">
               <Link 
-                href="/" 
+                href={`/${locale}`} 
                 className="flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-5 bg-blue-950 dark:bg-white text-white dark:text-blue-950 font-black rounded-2xl shadow-xl hover:bg-cyan-600 dark:hover:bg-cyan-400 transition-colors uppercase tracking-widest text-sm"
               >
                 <FaArrowLeft /> {t("back")}
@@ -202,4 +191,4 @@ export default function KvkkPage() {
       </div>
     </main>
   );
-}
+}

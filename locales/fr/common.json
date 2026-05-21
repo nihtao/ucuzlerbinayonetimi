@@ -91,6 +91,168 @@
     "sec1": "1. Responsable du Traitement",
     "sec2": "2. Finalité du Traitement",
     "sec3": "3. Vos Droits Légaux",
-    "back": "RETOUR À L'ACCUEIL"
+    "back": "RETOUR À L'ACCUEIL",
+    "intro": "En tant que Ucuzler Gestion d'Immeubles, nous accordons la plus grande importance à la sécurité, à la confidentialité et au traitement légal de vos données personnelles conformément à la Loi sur la Protection des Données Personnelles n° 6698.",
+    "sec1Desc": "Ucuzler Gestion d'Immeubles, situé au quartier Sahabiye, rue Ahmet Paşa, Centre d'affaires Kalender 41/10, agit en tant que \"Responsable du traitement\" dans le cadre du KVKK, et vos données personnelles sont traitées dans les limites expliquées dans ce Texte de Clarification.",
+    "sec2Desc": "Vos données personnelles sont traitées par notre société dans le but de fournir pleinement les services de gestion que nous proposons. Nos principaux objectifs de traitement sont:",
+    "sec2Items": [
+      "Gestion des processus de recouvrement des charges et avances sur dépenses",
+      "Assurer la sécurité des bâtiments, sites et centres d'affaires",
+      "Respect complet des obligations juridiques et financières",
+      "Améliorer la qualité de service pour nos résidents et assurer la communication"
+    ],
+    "sec3Desc": "Conformément à l'article 11 du KVKK, en tant que personne concernée, vous disposez des droits légaux suivants:",
+    "sec3Items": [
+      "Savoir si des données personnelles sont traitées",
+      "Si traitées, demander des informations à ce sujet",
+      "Connaître la finalité du traitement et son utilisation appropriée",
+      "Demander la correction de données incomplètes ou incorrectement traitées",
+      "Demander la suppression de données conformément à la loi",
+      "S'opposer aux analyses effectuées par des systèmes automatisés"
+    ]
+  },
+  "home": {
+    "missionTitle": "Notre Mission",
+    "missionDesc": "\"Répondre aux besoins des résidents; gérer la comptabilité, le nettoyage et l'entretien de manière professionnelle.\"",
+    "visionTitle": "Notre Vision",
+    "visionDesc": "\"Être une marque exemplaire dans la gestion de bâtiments en Turquie avec des solutions transparentes.\"",
+    "servicesTitle1": "FORFAIT DE SERVICES",
+    "servicesTitle2": "COMPLET",
+    "servicesTitle3": "",
+    "servicesDesc": "\"Vous vivez en paix, nous gérons de manière professionnelle.\"",
+    "apsAps": "APS",
+    "apsDigital": "Centre de Gestion Numérique",
+    "apsTitle1": "GESTION",
+    "apsTitle2": "INDÉPENDANTE ET TRANSPARENTE",
+    "apsBadge": "Premier et Unique à Kayseri!",
+    "apsDesc1": "Nous mettons fin au risque du système de fonds communs dans le secteur.",
+    "apsDesc2": "Ucuzler vous permet de tout suivre de manière transparente.",
+    "apsDownload": "Télécharger l'application APSIYON",
+    "refBadge": "La Valeur de l'Excellence",
+    "refTitle1": "NOTRE PLUS GRANDE RÉFÉRENCE EST",
+    "refTitle2": "NOTRE QUALITÉ INVARIABLE.",
+    "refDesc": "Forts de nos années d'expérience, nous apportons confiance et transparence.",
+    "stepsTitle1": "GESTION PROFESSIONNELLE",
+    "stepsTitle2": "EN 4 ÉTAPES",
+    "steps1Title": "Découverte",
+    "steps1Desc": "Nous inspectons votre bâtiment sur place.",
+    "steps2Title": "Planification",
+    "steps2Desc": "Nous préparons le projet et le budget annuels.",
+    "steps3Title": "Transition Numérique",
+    "steps3Desc": "Nous connectons votre site à Apsiyon.",
+    "steps4Title": "Vie Paisible",
+    "steps4Desc": "Nous gérons tous les processus 24/7.",
+    "newsTitle1": "ANNONCES",
+    "newsTitle2": "ACTUELLES",
+    "newsDesc": "Dernières nouvelles et projets.",
+    "newsLink": "Voir Tout →",
+    "newsEmpty": "Aucune annonce pour le moment.",
+    "mapTitle1": "UCUZLER",
+    "mapTitle2": "GESTION DE BÂTIMENTS",
+    "mapBtn": "ALLER AU FORMULAIRE",
+    "faqTitle1": "QUESTIONS",
+    "faqTitle2": "FRÉQUENTES",
+    "faqDesc": "Réponses à vos questions sur notre gestion.",
+    "hizmetler": [
+      {
+        "title": "Paiement Rapide en Ligne",
+        "short": "Paiement sécurisé 24/7 via notre système.",
+        "details": [
+          "Paiement par carte",
+          "Infrastructure SSL",
+          "Reçu instantané"
+        ]
+      },
+      {
+        "title": "Comptabilité",
+        "short": "Vos finances sous contrôle total.",
+        "details": [
+          "Rapports mensuels",
+          "Notification auto",
+          "Gestion transparente"
+        ]
+      },
+      {
+        "title": "Maintenance Technique",
+        "short": "Réparations par nos équipes d'experts.",
+        "details": [
+          "Support 24/7",
+          "Audits planifiés",
+          "Réponse rapide"
+        ]
+      },
+      {
+        "title": "Nettoyage",
+        "short": "Espaces communs nettoyés quotidiennement.",
+        "details": [
+          "Nettoyage quotidien",
+          "Désinfection",
+          "Matériaux hygiéniques"
+        ]
+      },
+      {
+        "title": "Jardinage",
+        "short": "Entretien des espaces verts.",
+        "details": [
+          "Tonte de pelouse",
+          "Plantation",
+          "Arrosage automatique"
+        ]
+      },
+      {
+        "title": "Personnel Mobile",
+        "short": "Visites régulières de nos équipes.",
+        "details": [
+          "Vérification périodique",
+          "Détection rapide",
+          "Support mobile"
+        ]
+      },
+      {
+        "title": "Relevé des Compteurs",
+        "short": "Relevé précis et facturation transparente.",
+        "details": [
+          "Chauffage",
+          "Partage équitable",
+          "Facture numérique"
+        ]
+      },
+      {
+        "title": "Collecte des Ordures",
+        "short": "Déchets ramassés régulièrement.",
+        "details": [
+          "Collecte quotidienne",
+          "Prévention des odeurs",
+          "Tri sélectif"
+        ]
+      },
+      {
+        "title": "Conseil Juridique",
+        "short": "Gestion légale au sein de la copropriété.",
+        "details": [
+          "Gestion conforme",
+          "Suivi des dossiers",
+          "Résolution de litiges"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Comment les frais sont-ils déterminés ?",
+        "a": "Ils sont calculés selon le budget annuel de manière transparente."
+      },
+      {
+        "q": "Où puis-je voir mes dettes ?",
+        "a": "Sur l'application Apsiyon 24/7."
+      },
+      {
+        "q": "Qui contacter en cas d'urgence ?",
+        "a": "Appelez notre ligne de support 24/7."
+      },
+      {
+        "q": "Quand les rapports sont-ils publiés ?",
+        "a": "La première semaine du mois suivant."
+      }
+    ]
   }
 }

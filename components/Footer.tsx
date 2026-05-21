@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 // --- VERİ TANIMLARI (modüler: tek yerden yönetim) ---
 const ILETISIM_BILGILERI = {
@@ -34,18 +34,19 @@ const columnVariant = {
 export default function Footer() {
   const t = useTranslations("footer");
   const th = useTranslations("header");
+  const locale = useLocale();
 
   const SITE_LINKLERI = [
-    { label: th("home"), href: "/" },
-    { label: th("about"), href: "/#hakkimizda" },
-    { label: th("services"), href: "/#hizmetler" },
-    { label: th("references"), href: "/#referanslar" }
+    { label: th("home"), href: `/${locale}` },
+    { label: th("about"), href: `/${locale}/#hakkimizda` },
+    { label: th("services"), href: `/${locale}/#hizmetler` },
+    { label: th("references"), href: `/${locale}/#referanslar` }
   ];
 
   const KURUMSAL_LINKLER = [
-    { label: th("kvkk"), href: "/kvkk" },
-    { label: th("freeQuote"), href: "/iletisim" },
-    { label: th("contactUs"), href: "/iletisim" },
+    { label: th("kvkk"), href: `/${locale}/kvkk` },
+    { label: th("freeQuote"), href: `/${locale}/iletisim` },
+    { label: th("contactUs"), href: `/${locale}/iletisim` },
   ];
 
   return (
@@ -71,7 +72,7 @@ export default function Footer() {
             variants={columnVariant}
             className="flex flex-col gap-5"
           >
-            <Link href="/" className="flex items-center gap-3 w-fit" aria-label="Ana sayfaya dön">
+            <Link href={`/${locale}`} className="flex items-center gap-3 w-fit" aria-label="Ana sayfaya dön">
               <Image
                 src="/binayonetimi.jpeg"
                 alt="Üçüzler Bina Yönetimi"
@@ -180,7 +181,7 @@ export default function Footer() {
                 {t("freeDiscoveryDesc")}
               </p>
               {/* py-3 px-5 → Kural 2: ≥44px dikey dokunmatik alan */}
-              <Link href="/iletisim" className="block py-3 px-5 rounded-xl text-center text-xs font-bold uppercase tracking-widest bg-cyan-500 text-white hover:bg-cyan-400 active:scale-95 transition-all">
+              <Link href={`/${locale}/iletisim`} className="block py-3 px-5 rounded-xl text-center text-xs font-bold uppercase tracking-widest bg-cyan-500 text-white hover:bg-cyan-400 active:scale-95 transition-all">
                 {t("getQuoteBtn")}
               </Link>
             </div>

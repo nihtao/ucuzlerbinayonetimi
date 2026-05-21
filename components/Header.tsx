@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 // --- NAVİGASYON LİNKLERİ ---
@@ -46,13 +46,14 @@ const IconClose = () => (
 
 export default function Header() {
   const t = useTranslations("header");
+  const locale = useLocale();
   const NAV_LINKS = [
-    { label: t("home"), href: "/" },
-    { label: t("about"), href: "/#hakkimizda" },
-    { label: t("services"), href: "/#hizmetler" },
-    { label: t("references"), href: "/#referanslar" },
-    { label: t("contact"), href: "/iletisim" },
-    { label: t("kvkk"), href: "/kvkk" },
+    { label: t("home"), href: `/${locale}` },
+    { label: t("about"), href: `/${locale}/#hakkimizda` },
+    { label: t("services"), href: `/${locale}/#hizmetler` },
+    { label: t("references"), href: `/${locale}/#referanslar` },
+    { label: t("contact"), href: `/${locale}/iletisim` },
+    { label: t("kvkk"), href: `/${locale}/kvkk` },
   ];
   // Kural 1: useState ile mobil menü aç/kapa durumu yönetilir
   const [isOpen, setIsOpen] = useState(false);
@@ -81,18 +82,20 @@ export default function Header() {
 
   // Anchor (#) linkleri smooth scroll ile çözer; normal rotalar Next.js'e bırakılır
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("/#")) {
-      // Farklı sayfadaysa (pathname ≠ "/") tarayıcıya bırak, "/" ise smooth scroll
-      if (window.location.pathname === "/") {
+    if (href.includes("/#")) {
+      const currentPath = window.location.pathname;
+      const localePaths = [`/${locale}/`, `/${locale}`];
+      const isHome = currentPath === `/${locale}` || currentPath === `/${locale}/` || currentPath === '/';
+      if (isHome) {
         e.preventDefault();
-        const id = href.replace("/#", "");
+        const id = href.replace(/.*\/\#/, "");
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    } else if (href === "/" && window.location.pathname === "/") {
+    } else if ((href === `/${locale}` || href === '/') && (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/` || window.location.pathname === '/')) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    setIsOpen(false); // Her durumda mobil menüyü kapat
+    setIsOpen(false);
   };
 
   return (
@@ -112,8 +115,8 @@ export default function Header() {
         {/* LOGO */}
         <div className="flex justify-start flex-shrink-0">
           <Link
-            href="/"
-            onClick={(e) => handleNav(e, "/")}
+            href={`/${locale}`}
+            onClick={(e) => handleNav(e, `/${locale}`)}
             className="flex items-center gap-3 flex-shrink-0 transition-opacity hover:opacity-80"
             aria-label="Üçüzler Bina Yönetimi - Ana Sayfa"
           >
@@ -166,7 +169,7 @@ export default function Header() {
             <LanguageSwitcher />
           </div>
           <Link
-            href="/iletisim"
+            href={`/${locale}/iletisim`}
             className="
               hidden xl:inline-flex
               ml-2 px-4 xl:px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest whitespace-nowrap
@@ -244,7 +247,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/iletisim"
+            href={`/${locale}/iletisim`}
             onClick={() => setIsOpen(false)}
             className="
               mt-4 py-4 px-6 rounded-full text-base font-bold uppercase tracking-widest text-center
