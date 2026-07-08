@@ -259,5 +259,11 @@
     "blogTitle2": "NEWS",
     "blogDesc": "Useful information about building management, legal rights, and legislation.",
     "blogDetail": "Get Detailed Info"
+  },
+  "blogDetail": {
+    "backToAll": "Back to All News",
+    "ctaTitle": "Need More Information?",
+    "ctaDesc": "You can get professional support for all legal processes, technical problems, and accounting procedures related to your building management.",
+    "ctaBtn": "Contact Us Now"
   }
 }

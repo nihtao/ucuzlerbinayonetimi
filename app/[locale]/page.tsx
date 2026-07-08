@@ -1,7 +1,7 @@
 "use client"; // En üstte kalmalı
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { supabase } from '@/utils/supabase';
 import { blogYazilari } from '@/utils/blogData';
 import Hero from '@/components/Hero';
@@ -80,6 +80,7 @@ const accordionVariants = {
 
 export default function Home() {
   const t = useTranslations("home");
+  const locale = useLocale();
   const [referanslar, setReferanslar] = useState<Referans[]>([]);
   const [duyurular, setDuyurular] = useState<Duyuru[]>([]);
   const [activeService, setActiveService] = useState<number | null>(null);
@@ -457,7 +458,7 @@ export default function Home() {
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute top-4 left-4 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
-                      {blog.etiket}
+                      {locale === 'en' ? blog.en_etiket : blog.etiket}
                     </div>
                   </div>
                   <div className="p-6 md:p-8 flex flex-col flex-grow">
@@ -466,10 +467,10 @@ export default function Home() {
                       {blog.tarih}
                     </div>
                     <h3 className="text-xl font-black text-blue-900 dark:text-white leading-tight mb-4 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                      {blog.baslik}
+                      {locale == 'en' ? blog.en_baslik : blog.baslik}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
-                      {blog.ozet}
+                      {locale === 'en' ? blog.en_ozet : blog.ozet}
                     </p>
                     <Link href={`/blog/${blog.id}`} className="text-blue-900 dark:text-cyan-400 font-bold text-sm flex items-center gap-2 group/link mt-auto w-max">
                       <span className="border-b border-transparent group-hover/link:border-cyan-500 transition-all">{t('blogDetail')}</span>

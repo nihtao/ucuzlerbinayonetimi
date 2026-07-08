@@ -259,5 +259,11 @@
     "blogTitle2": "HABERLER",
     "blogDesc": "Bina yönetimi, hukuki haklar ve mevzuat hakkında faydalı bilgiler.",
     "blogDetail": "Detaylı Bilgi Al"
+  },
+  "blogDetail": {
+    "backToAll": "Tüm Haberlere Dön",
+    "ctaTitle": "Daha Fazla Bilgiye mi İhtiyacınız Var?",
+    "ctaDesc": "Bina yönetiminizle ilgili tüm yasal süreçler, teknik problemler ve muhasebe işlemleri için profesyonel destek alabilirsiniz.",
+    "ctaBtn": "Hemen Bizimle İletişime Geçin"
   }
 }
