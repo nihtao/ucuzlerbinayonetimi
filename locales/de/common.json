@@ -253,7 +253,12 @@
         "q": "Wann werden Berichte veröffentlicht?",
         "a": "Detaillierte Berichte werden in der ersten Woche des Folgemonats veröffentlicht."
       }
-    ]
+    ],
+    "blogCorner": "WISSENSECKE",
+    "blogTitle1": "INDUSTRIE",
+    "blogTitle2": "NACHRICHT",
+    "blogDesc": "Nützliche Informationen zum Gebäudemanagement, zu gesetzlichen Rechten und zur Gesetzgebung.",
+    "blogDetail": "Details lesen"
   },
   "blogDetail": {
     "backToAll": "Zurück zu allen Neuigkeiten",

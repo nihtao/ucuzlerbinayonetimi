@@ -253,7 +253,12 @@
         "q": "¿Cuándo se publican los informes?",
         "a": "Los informes se publican digitalmente en la primera semana del mes siguiente."
       }
-    ]
+    ],
+    "blogCorner": "RINCÓN DEL CONOCIMIENTO",
+    "blogTitle1": "INDUSTRIA",
+    "blogTitle2": "NOTICIAS",
+    "blogDesc": "Información útil sobre gestión de edificios, derechos legales y legislación.",
+    "blogDetail": "Leer detalles"
   },
   "blogDetail": {
     "backToAll": "Volver a todas las noticias",

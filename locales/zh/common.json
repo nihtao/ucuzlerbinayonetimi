@@ -253,7 +253,12 @@
         "q": "报告何时发布？",
         "a": "下个月的第一周。"
       }
-    ]
+    ],
+    "blogCorner": "知识角",
+    "blogTitle1": "行业",
+    "blogTitle2": "消息",
+    "blogDesc": "有关建筑管理、合法权利和立法的有用信息。",
+    "blogDetail": "阅读详情"
   },
   "blogDetail": {
     "backToAll": "返回所有新闻",

@@ -253,7 +253,12 @@
         "q": "Quand les rapports sont-ils publiés ?",
         "a": "La première semaine du mois suivant."
       }
-    ]
+    ],
+    "blogCorner": "COIN DES CONNAISSANCES",
+    "blogTitle1": "INDUSTRIE",
+    "blogTitle2": "NOUVELLES",
+    "blogDesc": "Informations utiles sur la gestion des bâtiments, les droits légaux et la législation.",
+    "blogDetail": "Lire les détails"
   },
   "blogDetail": {
     "backToAll": "Retour à toutes les actualités",
