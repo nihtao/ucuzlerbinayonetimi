@@ -253,6 +253,11 @@
         "q": "When are reports published?",
         "a": "Detailed monthly income-expense tables and bank statements are published digitally on the resident panel in the first week of the following month."
       }
-    ]
+    ],
+    "blogCorner": "KNOWLEDGE CORNER",
+    "blogTitle1": "INDUSTRY",
+    "blogTitle2": "NEWS",
+    "blogDesc": "Useful information about building management, legal rights, and legislation.",
+    "blogDetail": "Get Detailed Info"
   }
 }
