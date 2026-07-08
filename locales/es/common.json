@@ -254,5 +254,11 @@
         "a": "Los informes se publican digitalmente en la primera semana del mes siguiente."
       }
     ]
+  },
+  "blogDetail": {
+    "backToAll": "Back to All News",
+    "ctaTitle": "Need More Information?",
+    "ctaDesc": "You can get professional support for all legal processes, technical problems, and accounting procedures related to your building management.",
+    "ctaBtn": "Contact Us Now"
   }
 }

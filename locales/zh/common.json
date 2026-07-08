@@ -254,5 +254,11 @@
         "a": "下个月的第一周。"
       }
     ]
+  },
+  "blogDetail": {
+    "backToAll": "Back to All News",
+    "ctaTitle": "Need More Information?",
+    "ctaDesc": "You can get professional support for all legal processes, technical problems, and accounting procedures related to your building management.",
+    "ctaBtn": "Contact Us Now"
   }
 }

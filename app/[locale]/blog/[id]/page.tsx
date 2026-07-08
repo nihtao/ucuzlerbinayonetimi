@@ -50,10 +50,10 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
             {/* Resim Üzeri Bilgiler */}
             <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 flex flex-col items-start gap-4">
               <span className="bg-cyan-600 text-white text-xs md:text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
-                {locale === 'en' ? blog.en_etiket : blog.etiket}
+                {locale !== 'tr' ? blog.en_etiket : blog.etiket}
               </span>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-                {locale === 'en' ? blog.en_baslik : blog.baslik}
+                {locale !== 'tr' ? blog.en_baslik : blog.baslik}
               </h1>
               <div className="flex items-center gap-4 text-white/80 text-sm md:text-base font-medium mt-2">
                 <span className="flex items-center gap-2"><FaCalendarAlt /> {blog.tarih}</span>
@@ -66,7 +66,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
           <div className="p-6 md:p-10 lg:p-12 text-gray-700 dark:text-gray-300">
             {/* Özet Alanı */}
             <div className="mb-10 p-6 bg-blue-50 dark:bg-cyan-900/20 border-l-4 border-blue-900 dark:border-cyan-500 rounded-r-xl italic text-lg text-blue-900 dark:text-cyan-100 shadow-sm">
-              "{locale === 'en' ? blog.en_ozet : blog.ozet}"
+              "{locale !== 'tr' ? blog.en_ozet : blog.ozet}"
             </div>
 
             {/* Detaylı İçerik Html Rendering */}
@@ -74,7 +74,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
               className="prose prose-lg dark:prose-invert prose-cyan max-w-none 
                          prose-headings:text-blue-900 dark:prose-headings:text-white
                          prose-p:leading-relaxed prose-a:text-cyan-600 dark:prose-a:text-cyan-400"
-              dangerouslySetInnerHTML={{ __html: locale === 'en' ? blog.en_detayli_icerik : blog.detayli_icerik }}
+              dangerouslySetInnerHTML={{ __html: locale !== 'tr' ? blog.en_detayli_icerik : blog.detayli_icerik }}
             />
           </div>
         </motion.article>

@@ -254,5 +254,11 @@
         "a": "Detaillierte Berichte werden in der ersten Woche des Folgemonats veröffentlicht."
       }
     ]
+  },
+  "blogDetail": {
+    "backToAll": "Back to All News",
+    "ctaTitle": "Need More Information?",
+    "ctaDesc": "You can get professional support for all legal processes, technical problems, and accounting procedures related to your building management.",
+    "ctaBtn": "Contact Us Now"
   }
 }
