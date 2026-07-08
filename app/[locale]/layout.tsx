@@ -30,7 +30,9 @@ export const metadata: Metadata = {
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
-  const locale = resolvedParams?.locale ?? "tr";
+  const VALID_LOCALES = ["tr", "en", "ar", "es", "fr", "zh", "de"];
+  const rawLocale = resolvedParams?.locale ?? "tr";
+  const locale = VALID_LOCALES.includes(rawLocale) ? rawLocale : "tr";
   const messages = (await import(`../../locales/${locale}/common.json`)).default;
 
   return (

@@ -91,6 +91,168 @@
     "sec1": "1. Datenverantwortlicher",
     "sec2": "2. Verarbeitungszweck",
     "sec3": "3. Ihre gesetzlichen Rechte",
-    "back": "ZURÜCK ZUR STARTSEITE"
+    "back": "ZURÜCK ZUR STARTSEITE",
+    "intro": "Als Ucuzler Gebäudeverwaltung legen wir größten Wert auf die Sicherheit, Vertraulichkeit und rechtmäßige Verarbeitung Ihrer personenbezogenen Daten gemäß dem Datenschutzgesetz Nr. 6698.",
+    "sec1Desc": "Die Ucuzler Gebäudeverwaltung mit Sitz in Sahabiye Viertel, Ahmet Paşa Straße, Kalender Business Center 41/10, handelt im Rahmen des KVKK als \"Verantwortlicher\" und Ihre personenbezogenen Daten werden im Rahmen dieses Aufklärungstextes verarbeitet.",
+    "sec2Desc": "Ihre personenbezogenen Daten werden von unserem Unternehmen verarbeitet, um die von uns angebotenen Verwaltungsdienstleistungen vollständig erbringen zu können. Unsere wichtigsten Verarbeitungszwecke sind:",
+    "sec2Items": [
+      "Verwaltung von Inkassoprozessen für Gebühren und Kostenvorschüsse",
+      "Sicherstellung der Sicherheit von Gebäuden, Anlagen und Geschäftszentren",
+      "Vollständige Erfüllung rechtlicher und finanzieller Verpflichtungen",
+      "Verbesserung der Servicequalität für unsere Bewohner und Sicherstellung der Kommunikation"
+    ],
+    "sec3Desc": "Gemäß Artikel 11 des KVKK haben Sie als betroffene Person folgende Rechte:",
+    "sec3Items": [
+      "Erfahren, ob personenbezogene Daten verarbeitet werden",
+      "Falls verarbeitet, Informationen darüber anfordern",
+      "Den Zweck der Verarbeitung und die zweckgemäße Verwendung erfahren",
+      "Berichtigung unvollständiger oder fehlerhaft verarbeiteter Daten verlangen",
+      "Löschung von Daten gemäß dem Gesetz beantragen",
+      "Widerspruch gegen durch automatisierte Systeme durchgeführte Analysen einlegen"
+    ]
+  },
+  "home": {
+    "missionTitle": "Unsere Mission",
+    "missionDesc": "\"Die Bedürfnisse der Bewohner schnell und effektiv zu erfüllen; Buchhaltung, Reinigung und technische Prozesse professionell zu verwalten.\"",
+    "visionTitle": "Unsere Vision",
+    "visionDesc": "\"Eine vorbildliche Marke im Gebäude- und Anlagenmanagement in der Türkei mit transparenten, zuverlässigen und technologischen Lösungen zu sein.\"",
+    "servicesTitle1": "VOLLSTÄNDIGES",
+    "servicesTitle2": "SERVICE-PAKET",
+    "servicesTitle3": "",
+    "servicesDesc": "\"Sie leben friedlich, wir verwalten professionell.\"",
+    "apsAps": "APS",
+    "apsDigital": "Digitales Managementzentrum",
+    "apsTitle1": "TRANSPARENTE",
+    "apsTitle2": "UNABHÄNGIGE VERWALTUNG",
+    "apsBadge": "Erste und Einzige in Kayseri!",
+    "apsDesc1": "Wir beenden das Risiko des \"Pool-Systems\" in der Branche. Wir erstellen unabhängige Konten für jede Anlage, ohne Pool-System.",
+    "apsDesc2": "Mit der branchenführenden Apsiyon-Infrastruktur können Sie alles transparent nachverfolgen.",
+    "apsDownload": "APSIYON App herunterladen",
+    "refBadge": "Der Wert der Exzellenz",
+    "refTitle1": "UNSERE GRÖSSTE REFERENZ IST",
+    "refTitle2": "UNSERE QUALITÄT.",
+    "refDesc": "Mit jahrelanger Erfahrung bringen wir Vertrauen und Transparenz in tausende Haushalte.",
+    "stepsTitle1": "PROFESSIONELLES MANAGEMENT",
+    "stepsTitle2": "IN 4 SCHRITTEN",
+    "steps1Title": "Kostenlose Entdeckung",
+    "steps1Desc": "Wir überprüfen Ihr Gebäude vor Ort und decken Mängel auf.",
+    "steps2Title": "Planung",
+    "steps2Desc": "Wir erstellen das jährliche Betriebsprojekt und Budget.",
+    "steps3Title": "Digitaler Übergang",
+    "steps3Desc": "Wir verbinden Ihre Anlage mit Apsiyon und Bankkonten.",
+    "steps4Title": "Friedliches Leben",
+    "steps4Desc": "Wir beginnen mit der 24/7-Verwaltung aller Prozesse.",
+    "newsTitle1": "AKTUELLE",
+    "newsTitle2": "ANKÜNDIGUNGEN",
+    "newsDesc": "Neuigkeiten und Projekte von Ucuzler Management.",
+    "newsLink": "Alle ansehen →",
+    "newsEmpty": "Keine aktuellen Ankündigungen.",
+    "mapTitle1": "UCUZLER",
+    "mapTitle2": "GEBÄUDEVERWALTUNG",
+    "mapBtn": "ZUM ANGEBOTSFORMULAR GEHEN",
+    "faqTitle1": "HÄUFIG GESTELLTE",
+    "faqTitle2": "FRAGEN",
+    "faqDesc": "Antworten auf Ihre Fragen zum Gebäudemanagement.",
+    "hizmetler": [
+      {
+        "title": "Schnelle Online-Zahlung",
+        "short": "Bewohner können ihre Gebühren rund um die Uhr sicher online bezahlen.",
+        "details": [
+          "Kreditkartenzahlung",
+          "Sichere SSL-Infrastruktur",
+          "Sofortige Quittung"
+        ]
+      },
+      {
+        "title": "Buchhaltung",
+        "short": "Ihre Finanzprozesse sind mit Einnahmen-Ausgaben-Berichten voll unter Kontrolle.",
+        "details": [
+          "Monatliche Berichterstattung",
+          "Automatische Benachrichtigung",
+          "Transparentes Budget"
+        ]
+      },
+      {
+        "title": "Technische Wartung",
+        "short": "Reparaturen werden professionell von unseren Expertenteams durchgeführt.",
+        "details": [
+          "24/7 Tech-Support",
+          "Geplante Audits",
+          "Schnelle Reaktion"
+        ]
+      },
+      {
+        "title": "Umwelt & Reinigung",
+        "short": "Gemeinschaftsbereiche werden täglich nach Hygienestandards gereinigt.",
+        "details": [
+          "Tägliche Reinigung",
+          "Desinfektionsprozesse",
+          "Hygienische Materialien"
+        ]
+      },
+      {
+        "title": "Landschaftspflege",
+        "short": "Regelmäßige Pflege von Grünflächen, Baumschnitt und Landschaftsbau.",
+        "details": [
+          "Rasenmähen",
+          "Saisonale Bepflanzung",
+          "Automatische Bewässerung"
+        ]
+      },
+      {
+        "title": "Mobile Dienste",
+        "short": "Wir bieten professionelle Audits durch regelmäßige Besuche.",
+        "details": [
+          "Gebäudeüberprüfung",
+          "Schnelle Fehlererkennung",
+          "Mobiler Support"
+        ]
+      },
+      {
+        "title": "Zählerablesung",
+        "short": "Zähler werden fehlerfrei abgelesen und transparent abgerechnet.",
+        "details": [
+          "Heizkostenablesung",
+          "Faire Kostenverteilung",
+          "Digitale Rechnung"
+        ]
+      },
+      {
+        "title": "Müllabfuhr",
+        "short": "Hausmüll wird regelmäßig in den Etagen gesammelt.",
+        "details": [
+          "Tägliche Abholung",
+          "Geruchsprävention",
+          "Mülltrennung"
+        ]
+      },
+      {
+        "title": "Rechtsberatung",
+        "short": "Wir bieten rechtliche Beratung im Rahmen des Wohnungseigentumsgesetzes.",
+        "details": [
+          "Gesetzeskonformes Management",
+          "Vollstreckungsverfolgung",
+          "Streitbeilegungen"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Wie werden Gebühren ermittelt?",
+        "a": "Die Gebühren werden basierend auf dem Jahresbudget und den Wartungskosten berechnet."
+      },
+      {
+        "q": "Wo sehe ich meine Schulden?",
+        "a": "Sie können Ihren Schuldenstatus rund um die Uhr in der Apsiyon-App überprüfen."
+      },
+      {
+        "q": "Wen im Notfall kontaktieren?",
+        "a": "Über unsere Support-Hotline oder die App können Sie schnelle Hilfe anfordern."
+      },
+      {
+        "q": "Wann werden Berichte veröffentlicht?",
+        "a": "Detaillierte Berichte werden in der ersten Woche des Folgemonats veröffentlicht."
+      }
+    ]
   }
 }

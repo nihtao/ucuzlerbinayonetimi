@@ -91,6 +91,168 @@
     "sec1": "1. Responsable de los Datos",
     "sec2": "2. Propósito del Procesamiento",
     "sec3": "3. Sus Derechos Legales",
-    "back": "VOLVER AL INICIO"
+    "back": "VOLVER AL INICIO",
+    "intro": "Como Ucuzler Administración de Edificios, otorgamos la máxima importancia a la seguridad, confidencialidad y procesamiento legal de sus datos personales de acuerdo con la Ley de Protección de Datos Personales No. 6698.",
+    "sec1Desc": "Ucuzler Administración de Edificios, ubicada en el barrio Sahabiye, Calle Ahmet Paşa, Centro de Negocios Kalender 41/10, actúa como \"Responsable del Tratamiento\" dentro del alcance de KVKK, y sus datos personales se procesan dentro de los límites explicados en este Texto de Aclaración.",
+    "sec2Desc": "Sus datos personales son procesados por nuestra empresa con el fin de prestar plenamente los servicios de gestión que ofrecemos. Nuestros principales propósitos de procesamiento son:",
+    "sec2Items": [
+      "Gestión de procesos de cobro de cuotas y anticipos de gastos",
+      "Garantizar la seguridad de edificios, sitios y centros de negocios",
+      "Cumplimiento completo de obligaciones legales y financieras",
+      "Mejorar la calidad del servicio para nuestros residentes y garantizar la comunicación"
+    ],
+    "sec3Desc": "De conformidad con el Artículo 11 del KVKK, como titular de datos, usted tiene los siguientes derechos:",
+    "sec3Items": [
+      "Saber si los datos personales son procesados",
+      "Si se procesan, solicitar información al respecto",
+      "Conocer el propósito del procesamiento y si se utiliza adecuadamente",
+      "Solicitar la corrección de datos incompletos o procesados incorrectamente",
+      "Solicitar la eliminación de datos de acuerdo con la ley",
+      "Oponerse a análisis realizados mediante sistemas automatizados"
+    ]
+  },
+  "home": {
+    "missionTitle": "Nuestra Misión",
+    "missionDesc": "\"Satisfacer las necesidades de los residentes; gestionando profesionalmente la contabilidad, limpieza y mantenimiento.\"",
+    "visionTitle": "Nuestra Visión",
+    "visionDesc": "\"Ser una marca ejemplar en la gestión de edificios en Turquía con soluciones transparentes y tecnológicas.\"",
+    "servicesTitle1": "PAQUETE DE",
+    "servicesTitle2": "SERVICIO COMPLETO",
+    "servicesTitle3": "",
+    "servicesDesc": "\"Usted vive tranquilo, nosotros gestionamos profesionalmente.\"",
+    "apsAps": "APS",
+    "apsDigital": "Centro de Gestión Digital",
+    "apsTitle1": "GESTIÓN",
+    "apsTitle2": "INDEPENDIENTE Y TRANSPARENTE",
+    "apsBadge": "¡Primero y Único en Kayseri!",
+    "apsDesc1": "Ponemos fin al riesgo del sistema de fondos comunes en el sector.",
+    "apsDesc2": "Ucuzler Building Management le permite rastrear todo de manera transparente.",
+    "apsDownload": "Descargar App APSIYON",
+    "refBadge": "El Valor de la Excelencia",
+    "refTitle1": "NUESTRA MAYOR REFERENCIA ES",
+    "refTitle2": "NUESTRA CALIDAD INVARIABLE.",
+    "refDesc": "Con años de experiencia, brindamos confianza y transparencia a miles de hogares.",
+    "stepsTitle1": "GESTIÓN PROFESIONAL",
+    "stepsTitle2": "EN 4 PASOS",
+    "steps1Title": "Descubrimiento",
+    "steps1Desc": "Inspeccionamos su edificio y detectamos deficiencias.",
+    "steps2Title": "Planificación",
+    "steps2Desc": "Preparamos el proyecto y presupuesto anual.",
+    "steps3Title": "Transición Digital",
+    "steps3Desc": "Conectamos su sitio a Apsiyon y cuentas bancarias.",
+    "steps4Title": "Vida Pacífica",
+    "steps4Desc": "Gestionamos todos los procesos 24/7.",
+    "newsTitle1": "ANUNCIOS",
+    "newsTitle2": "ACTUALES",
+    "newsDesc": "Últimas noticias y proyectos.",
+    "newsLink": "Ver Todo →",
+    "newsEmpty": "No hay anuncios actuales.",
+    "mapTitle1": "UCUZLER",
+    "mapTitle2": "GESTIÓN DE EDIFICIOS",
+    "mapBtn": "IR AL FORMULARIO",
+    "faqTitle1": "PREGUNTAS",
+    "faqTitle2": "FRECUENTES",
+    "faqDesc": "Respuestas a sus preguntas sobre nuestra gestión.",
+    "hizmetler": [
+      {
+        "title": "Pago Rápido Online",
+        "short": "Los residentes pueden pagar de forma segura 24/7.",
+        "details": [
+          "Pago con tarjeta",
+          "Infraestructura SSL",
+          "Recibo instantáneo"
+        ]
+      },
+      {
+        "title": "Contabilidad",
+        "short": "Sus finanzas bajo control total con informes transparentes.",
+        "details": [
+          "Informes mensuales",
+          "Notificación automática",
+          "Gestión transparente"
+        ]
+      },
+      {
+        "title": "Mantenimiento",
+        "short": "Reparaciones realizadas por expertos.",
+        "details": [
+          "Soporte 24/7",
+          "Auditorías planificadas",
+          "Respuesta rápida"
+        ]
+      },
+      {
+        "title": "Limpieza",
+        "short": "Áreas comunes limpiadas diariamente.",
+        "details": [
+          "Limpieza diaria",
+          "Desinfección",
+          "Materiales higiénicos"
+        ]
+      },
+      {
+        "title": "Jardinería",
+        "short": "Mantenimiento de áreas verdes y poda de árboles.",
+        "details": [
+          "Corte de césped",
+          "Plantación estacional",
+          "Riego automático"
+        ]
+      },
+      {
+        "title": "Personal Móvil",
+        "short": "Visitas regulares por parte de nuestros equipos móviles.",
+        "details": [
+          "Revisión periódica",
+          "Detección rápida",
+          "Soporte móvil"
+        ]
+      },
+      {
+        "title": "Lectura de Medidores",
+        "short": "Lectura precisa de agua y electricidad.",
+        "details": [
+          "Costo de calefacción",
+          "Reparto justo",
+          "Factura digital"
+        ]
+      },
+      {
+        "title": "Recolección de Basura",
+        "short": "Residuos recogidos de los pisos regularmente.",
+        "details": [
+          "Recolección diaria",
+          "Prevención de olores",
+          "Reciclaje"
+        ]
+      },
+      {
+        "title": "Asesoría Legal",
+        "short": "Procesos legales dentro de la Ley de Condominios.",
+        "details": [
+          "Gestión legal",
+          "Seguimiento de ejecución",
+          "Resolución de disputas"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Cómo se determinan las cuotas?",
+        "a": "Se calculan de manera transparente según el presupuesto anual."
+      },
+      {
+        "q": "¿Dónde puedo ver mis deudas?",
+        "a": "Puede revisar su estado 24/7 a través de la aplicación Apsiyon."
+      },
+      {
+        "q": "¿A quién contacto en una emergencia?",
+        "a": "Llame a nuestra línea de soporte 24/7 para una respuesta rápida."
+      },
+      {
+        "q": "¿Cuándo se publican los informes?",
+        "a": "Los informes se publican digitalmente en la primera semana del mes siguiente."
+      }
+    ]
   }
 }
