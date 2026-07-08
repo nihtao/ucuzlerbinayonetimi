@@ -28,12 +28,14 @@ export const metadata: Metadata = {
   }
 };
 
+import { getMessages } from 'next-intl/server';
+
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   const VALID_LOCALES = ["tr", "en", "ar", "es", "fr", "zh", "de"];
   const rawLocale = resolvedParams?.locale ?? "tr";
   const locale = VALID_LOCALES.includes(rawLocale) ? rawLocale : "tr";
-  const messages = (await import(`../../locales/${locale}/common.json`)).default;
+  const messages = await getMessages();
 
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className="scroll-smooth" suppressHydrationWarning>

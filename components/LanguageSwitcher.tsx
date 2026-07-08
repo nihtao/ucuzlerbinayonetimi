@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
 const LOCALES = [
@@ -16,8 +16,6 @@ const LOCALES = [
 
 export default function LanguageSwitcher() {
   const pathname = usePathname() || "/";
-  const searchParams = useSearchParams();
-  const search = searchParams ? `?${searchParams.toString()}` : "";
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -75,7 +73,7 @@ export default function LanguageSwitcher() {
           } else {
             segments.splice(1, 0, loc.code);
           }
-          const newHref = segments.join("/") + search;
+          const newHref = segments.join("/");
 
           return (
             <Link
