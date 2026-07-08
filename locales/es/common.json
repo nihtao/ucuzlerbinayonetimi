@@ -256,9 +256,9 @@
     ]
   },
   "blogDetail": {
-    "backToAll": "Back to All News",
-    "ctaTitle": "Need More Information?",
-    "ctaDesc": "You can get professional support for all legal processes, technical problems, and accounting procedures related to your building management.",
-    "ctaBtn": "Contact Us Now"
+    "backToAll": "Volver a todas las noticias",
+    "ctaTitle": "¿Necesita más información?",
+    "ctaDesc": "Puede obtener soporte profesional para todos los procesos legales, problemas técnicos y procedimientos contables relacionados con la gestión de su edificio.",
+    "ctaBtn": "Contacta con nosotras ahora"
   }
 }

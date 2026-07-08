@@ -256,9 +256,9 @@
     ]
   },
   "blogDetail": {
-    "backToAll": "Back to All News",
-    "ctaTitle": "Need More Information?",
-    "ctaDesc": "You can get professional support for all legal processes, technical problems, and accounting procedures related to your building management.",
-    "ctaBtn": "Contact Us Now"
+    "backToAll": "العودة إلى كل الأخبار",
+    "ctaTitle": "هل تحتاج إلى مزيد من المعلومات؟",
+    "ctaDesc": "يمكنك الحصول على دعم احترافي لجميع العمليات القانونية والمشاكل الفنية والإجراءات المحاسبية المتعلقة بإدارة المبنى الخاص بك.",
+    "ctaBtn": "اتصل بنا الآن"
   }
 }
