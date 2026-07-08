@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: { locale: string } }) {
+export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   const locale = resolvedParams?.locale ?? "tr";
   const messages = (await import(`../../locales/${locale}/common.json`)).default;
